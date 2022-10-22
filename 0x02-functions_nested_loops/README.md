@@ -1,0 +1,1 @@
+This subdirectory contains files created to complete the project tasks of 0x02. C- Functions, nested loops as part of the requirement to pass the ALX Software Engineering programme at Holberton school.
