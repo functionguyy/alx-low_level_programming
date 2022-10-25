@@ -11,8 +11,10 @@ void print_triangle(int size)
 	int b;
 
 	s = 0;
+
 	b = size;
 
+     
 	for (int i = 0; i < size; i++)
 	{
 		s = s + 1;
