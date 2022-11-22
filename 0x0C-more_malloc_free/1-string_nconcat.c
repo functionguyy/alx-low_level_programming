@@ -17,7 +17,7 @@ int _strlen(char *c)
 }
 
 /**
- * str_concat - concatenates two strings. If NULL is passed as argument of any
+ * str_nconcat - concatenates two strings. If NULL is passed as argument of any
  * of the string pointer parameter, the NULL value is treated as an
  * empty string
  * @s1: pointer to the first string literal
