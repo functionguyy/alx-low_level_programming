@@ -22,6 +22,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	if (m == NULL)
 		return (NULL);
 
-	bzero (m, nmemb * size);
+	bzero(m, nmemb * size);
 	return (m);
 }
