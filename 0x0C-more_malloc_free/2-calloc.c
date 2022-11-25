@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 /**
 * _calloc - allocates memory for an array using malloc
 * @nmemb: size of type memory byte
@@ -13,7 +14,6 @@
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	void *m;
-	int i;
 
 	if ((nmemb == 0) || (size == 0))
 		return (NULL);
@@ -21,13 +21,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	m = malloc(nmemb * size);
 	if (m == NULL)
 		return (NULL);
-	
-	i = 0;
-	while (i < size)
-	{
-		m[i] = 0;
-		i++;
-	}
 
+	bzero (m, nmemb * size);
 	return (m);
 }
