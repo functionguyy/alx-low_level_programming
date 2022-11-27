@@ -18,7 +18,7 @@ int *array_range(int min, int max)
 	if (min > max)
 		return (NULL);
 
-	val_count = 1;
+	val_count = 0;
 	seen_min = min;
 	while (seen_min <= max)
 	{
