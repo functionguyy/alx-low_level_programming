@@ -12,20 +12,32 @@
 */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int idx = 0, i = 0;
+	int src_count;
+	int loop_idx;
 
-	while (src[idx] != '\0')
+	src_count = strlen(src);
+	loop_idx = 0;
+	if (src_count < n)
 	{
-		idx++;
+		while (src[loop_idx] != '\0')
+		{
+			dest[loop_idx] = src[loop_idx];
+			loop_idx++;
+		}
+		while (loop_idx < n)
+		{
+			dest[loop_idx] = '\0';
+			loop_idx++;
+		}
 	}
-
-	while (i <= n && src[i] != '\0')
+	else if (src_count > n)
 	{
-		dest[i] = src[i];
-		i++;
+		while (loop_idx < n)
+		{
+			dest[loop_idx] = src[loop_idx];
+			loop_idx++;
+		}
 	}
-	if (idx < n)
-		dest[i] ='\0';
 
 	return (dest);
 }
