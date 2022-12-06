@@ -12,7 +12,12 @@ char *cap_string(char *s)
 	loop_idx = 0;
 	while (s[loop_idx++] != '\0')
 	{
-		if (s[loop_idx] == '\x20' || s[loop_idx] == '\t' || s[loop_idx]
+		if (loop_idx == 0 && s[loop_idx] >= 'a' && s[loop_idx] <= 'z')
+		{
+			upper_ver = s[loop_idx] + 'A' - 'a';
+			s[loop_idx] = upper_ver;
+		}
+		else if (s[loop_idx] == '\x20' || s[loop_idx] == '\t' || s[loop_idx]
 				== '\n' || s[loop_idx] == ',' || s[loop_idx] ==
 				'.' || s[loop_idx] == '!' || s[loop_idx] == '?'
 				|| s[loop_idx] == '"' || s[loop_idx] == '(' ||
