@@ -10,7 +10,7 @@ char *cap_string(char *s)
 	int loop_idx;
 
 	loop_idx = 0;
-	while (s[loop_idx++] != '\0')
+	while (s[loop_idx] != '\0')
 	{
 		if (loop_idx == 0 && s[loop_idx] >= 'a' && s[loop_idx] <= 'z')
 		{
@@ -30,6 +30,7 @@ char *cap_string(char *s)
 				s[loop_idx + 1] = upper_ver;
 			}
 		}
+		loop_idx++;
 
 	}
 
