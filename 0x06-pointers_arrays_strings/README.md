@@ -1,4 +1,6 @@
 0x06. C - More pointers, arrays and strings
+
+
 The `for` statement is closely related to the `while` statement. In
 fact, except in a few rear cases, a `for` loop can always be replaced by
 an equivalent `while` loop. so the `for` in the `7-leet.c` file can also
