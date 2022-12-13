@@ -16,7 +16,7 @@ char *leet(char *s)
 	char *leet_arr = "aAeEoOtTlL";
 
 	loop_idx = 0;
-	while (s[loop_idx++] != '\0')
+	while (s[loop_idx] != '\0')
 	{
 		check_idx = 0;
 		while (leet_arr[check_idx++] != '\0')
@@ -24,6 +24,7 @@ char *leet(char *s)
 			if (s[loop_idx] == leet_arr[check_idx])
 				s[loop_idx] = arr[check_idx];
 		}
+		loop_idx++;
 	}
 
 	return (s);
