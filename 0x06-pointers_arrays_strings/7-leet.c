@@ -11,20 +11,18 @@
 char *leet(char *s)
 {
 	int loop_idx;
-	int check_idx;
+	signed int check_idx;
 	char *arr = "4433007711";
 	char *leet_arr = "aAeEoOtTlL";
 
 	loop_idx = 0;
 	while (s[loop_idx] != '\0')
 	{
-		check_idx = 0;
-		while (leet_arr[check_idx] != '\0')
+		check_idx = -1;
+		while (leet_arr[check_idx++] != '\0')
 		{
 			if (s[loop_idx] == leet_arr[check_idx])
 				s[loop_idx] = arr[check_idx];
-			else
-				check_idx++;
 		}
 		loop_idx++;
 	}
