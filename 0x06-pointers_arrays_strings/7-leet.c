@@ -2,26 +2,28 @@
 * leet - function that encodes a string into 1337
 * @s: pointer to string
 *
+* Description: Letters 'a' and 'A' should be replaced by 4, letters 'e'
+* and 'E' should be replaced by 3, letter 'o' and 'O' should be replaced
+* by 0, letters 't' and 'T' should be replaced by 7, letters 'l' and 'L'
+* should be replaced by 1.
 * Return: pointer the resulting string
 */
 char *leet(char *s)
 {
 	int loop_idx;
+	int check_idx;
+	char *arr = "4433007711";
+	char *leet_arr = "aAeEoOtTlL";
 
 	loop_idx = 0;
-	while (s[loop_idx] != '\0')
+	while (s[loop_idx++] != '\0')
 	{
-		if (s[loop_idx] == 'a' || s[loop_idx] == 'A')
-			s[loop_idx] = '4';
-		else if (s[loop_idx] == 'e' || s[loop_idx] == 'E')
-			s[loop_idx] = '3';
-		else if (s[loop_idx] == 'o' || s[loop_idx] == 'O')
-			s[loop_idx] = '0';
-		else if (s[loop_idx] == 't' || s[loop_idx] == 'T')
-			s[loop_idx] = '7';
-		else if (s[loop_idx] == 'l' || s[loop_idx] == 'L')
-			s[loop_idx] = '1';
-		loop_idx++;
+		check_idx = 0;
+		while (leet_arr[check_idx++] != '\0')
+		{
+			if (s[loop_idx] == leet_arr[check_idx])
+				s[loop_idx] = arr[check_idx];
+		}
 	}
 
 	return (s);
