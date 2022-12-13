@@ -19,10 +19,12 @@ char *leet(char *s)
 	while (s[loop_idx] != '\0')
 	{
 		check_idx = 0;
-		while (leet_arr[check_idx++] != '\0')
+		while (leet_arr[check_idx] != '\0')
 		{
 			if (s[loop_idx] == leet_arr[check_idx])
 				s[loop_idx] = arr[check_idx];
+			else
+				check_idx++;
 		}
 		loop_idx++;
 	}
