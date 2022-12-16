@@ -11,7 +11,6 @@ char *rot13(char *str)
 {
 	int loop_idx;
 	int check_idx;
-	int found_idx;
 	char *rot13_in =
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char *rot13_out =
@@ -19,15 +18,13 @@ char *rot13(char *str)
 	loop_idx = 0;
 	while (str[loop_idx] != '\0')
 	{
-		found_idx = 0;
 		check_idx = 0;
 		while (rot13_in[check_idx] != '\0')
 		{
-			if (str[loop_idx] == rot13_in[check_idx] &&
-					found_idx == 0)
+			if (str[loop_idx] == rot13_in[check_idx])
 			{
 				str[loop_idx] = rot13_out[check_idx];
-				found_idx = check_idx;
+				break;
 			}
 			check_idx++;
 		}
