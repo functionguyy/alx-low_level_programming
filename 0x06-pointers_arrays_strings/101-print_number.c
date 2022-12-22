@@ -1,7 +1,7 @@
 #include "main.h"
 /**
 * print_number - prints an integer to standard output
-* @n: integer to be printed 
+* @n: integer to be printed
 *
 * Description: You can only use _putchar function to print
 * you are not allowed to use long
