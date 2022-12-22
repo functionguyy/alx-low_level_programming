@@ -12,15 +12,27 @@
 void print_number(int n)
 {
 	unsigned int num = n;
+	unsigned int num_pad = 1000000000;
 
 	if (n < 0)
 	{
 		_putchar('-');
-		num = -num;
+		num = num * -1;
 	}
 
-	if ((num / 10) > 0)
-		print_number(num / 10);
-
-	_putchar((num % 10) + '0');
+	if (n != 0)
+	{
+		while (num / num_pad == 0)
+		{
+			num_pad = num_pad / 10;
+		}
+		while (num_pad >= 1)
+		{
+			_putchar((num / num_pad) + '0');
+			num = num % num_pad;
+			num_pad = num_pad / 10;
+		}
+	}
+	else
+		_putchar('0');
 }
