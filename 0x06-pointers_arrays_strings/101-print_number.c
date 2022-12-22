@@ -1,35 +1,26 @@
 #include "main.h"
 /**
 * print_number - prints an integer to standard output
-* @n: integer to be printed
+* @n: integer to be printed 
 *
-* Return: nothing
+* Description: You can only use _putchar function to print
+* you are not allowed to use long
+* you are not allowed to use arrays or pointers
+* you are not allowed to hard-code special values
+* Return: Nothing
 */
 void print_number(int n)
 {
-	int num_pad;
+	unsigned int num = n;
 
-	num_pad = 1000000000;
 	if (n < 0)
 	{
 		_putchar('-');
-		n = n * -1;
+		num = -num;
 	}
-	if (n != 0)
-	{
-		while (n / num_pad == 0)
-		{
-			num_pad = num_pad / 10;
-		}
-		while (num_pad >= 1)
-		{
-			_putchar((n / num_pad) + '0');
-			n = n % num_pad;
-			num_pad = num_pad / 10;
-		}
 
-	}
-	else
-		_putchar('0');
+	if ((num / 10) > 0)
+		print_number(num / 10);
 
+	_putchar((num % 10) + '0');
 }
