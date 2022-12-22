@@ -9,7 +9,7 @@ void print_number(int n)
 {
 	int num_pad;
 
-	num_pad = 10000000;
+	num_pad = 1000000000;
 	if (n < 0)
 	{
 		_putchar('-');
