@@ -55,11 +55,13 @@ arithmetic my code generated undefined results when an overflow
 occurs. Then I read a code somewhere that used an unsigned int type to
 perform the same task to get the expected result. 
 
-In C programming language, unsigned int` is much better than `signed
+In C programming language, `unsigned int` is much better than `signed
 int` as the range for `unsigned int` is larger than `signed int` and the
 modulus operation is defined for `unsigned int` and not for `signed
 int`. The following links give more details:
-[link 1](https://embeddedgurus.com/stack-overflow/2009/05/signed-versus-unsigned-integers/)
-[link
+
+- [link 1](https://embeddedgurus.com/stack-overflow/2009/05/signed-versus-unsigned-integers/)
+
+- [link
 2](https://embeddedgurus.com/stack-overflow/2009/08/a-tutorial-on-signed-and-unsigned-integers/#:~:text=To%20convert%20a%20signed%20integer%20to%20an%20unsigned,c%3B%20b%20%3D%20%28unsigned%20int%29a%3B%20c%20%3D%20%28int%29b%3B)
 end file
