@@ -13,11 +13,10 @@ unsigned int _strspn(char *s, char *accept)
 	int flag;
 
 	byte_count = 0;
-	loop_idx1 = 0;
-	while (s[loop_idx1] != '\0')
+	for (loop_idx1 = 0; s[loop_idx1] != '\0'; loop_idx1++)
 	{
-		loop_idx2 = 0;
-		while (accept[loop_idx2] != '\0')
+		for (loop_idx2 = 0; accept[loop_idx2] != '\0';
+				loop_idx2++)
 		{
 			flag = 0;
 			if (s[loop_idx1] == accept[loop_idx2])
@@ -26,13 +25,11 @@ unsigned int _strspn(char *s, char *accept)
 				flag = 1;
 				break;
 			}
-			loop_idx2++;
 		}
 		if (flag == 0)
 		{
 			break;
 		}
-		loop_idx1++;
 	}
 	return (byte_count);
 }
