@@ -4,7 +4,8 @@
 * argc - count of command line argument passed to the program
 * argv - array of command line argument string
 **/
-int main(int argc, char *argv[])
+
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	printf("%s\n", argv[0]);
 	return (0);
