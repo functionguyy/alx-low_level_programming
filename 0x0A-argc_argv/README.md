@@ -29,11 +29,11 @@ enter this command-line into our bash shell
 ```shell
 ls -l remind.c
 ```
-then `argc` will be $3$. `argv[0] will point to the string literal containing the program name.
+then `argc` will be $3$. `argv[0]` will point to the string literal containing the program name.
 `argv[1]` will point to the string `"-l"`, `argv[2]` will point to the
 `"remind.c"`, and `argv[3]` will be a **NULL pointer**
 
-###[0-whatsmyname.c](https://github.com/10xDatabro/alx-low_level_programming/blob/master/0x0A-argc_argv/0-whatsmyname.c)
+### [0-whatsmyname.c](https://github.com/10xDatabro/alx-low_level_programming/blob/master/0x0A-argc_argv/0-whatsmyname.c)
 
 I learned to suppress unused variable warning which is raised by gcc compilers
 when a variable is declared in a C program but not used in any part of program. 
