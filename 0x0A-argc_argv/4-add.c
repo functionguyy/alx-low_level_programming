@@ -6,6 +6,12 @@
 * @argc: number of command-line arguments
 * @argv: array of pointers to the command-line arguments
 *
+* Description: Print the result, followed by a new line 
+* if no number is passed to the program, print 0, followed by a new line
+* if one of the number contains symbols that are not digits, print Error,
+* followed by a new line, and return 1
+* You can assume that numbers and the addition of all the numbers can be
+* stored in an int
 * Return: 0 for success or 1 for failed execution
 **/
 
