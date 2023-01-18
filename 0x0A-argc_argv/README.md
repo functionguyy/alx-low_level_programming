@@ -65,3 +65,21 @@ recieved as command line argument to integer.
 
 `atoi()` accepts a pointer to `char` type as its argument and returns an `int` type
  
+
+### [4-add.c]()
+
+I used the C standard library function `strtol()` to convert the string
+recieved as command line argument to integer. `atoi()` does the same thing
+as `strtol()` the only difference is the `atoi()` does not detect error if
+a non-digit string character is encountered. 
+
+The prototype for `strtol()` is as follow:
+```C
+long int strtol(const char *nptr, char **endptr, int base)
+
+```
+`strtol()` returns a `long int` type and `null` byte value for the `endptr`
+variable if the string passed into is a valid digit character. 
+If `endptr` is not NULL, `strtol()` stores the address of the first invalid
+character it encounters.
+
