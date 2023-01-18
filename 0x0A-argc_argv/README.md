@@ -83,3 +83,5 @@ variable if the string passed into is a valid digit character.
 If `endptr` is not NULL, `strtol()` stores the address of the first invalid
 character it encounters.
 
+Read this [stackoverflowthread](https://stackoverflow.com/questions/9748393/how-can-i-get-argv-as-int)
+for more details about the usage of `strtol()`
