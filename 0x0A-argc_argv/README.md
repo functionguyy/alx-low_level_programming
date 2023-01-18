@@ -66,7 +66,7 @@ recieved as command line argument to integer.
 `atoi()` accepts a pointer to `char` type as its argument and returns an `int` type
  
 
-### [4-add.c](://github.com/10xDatabro/alx-low_level_programming/blob/master/0x0A-argc_argv/4-add.c)
+### [4-add.c](https://github.com/10xDatabro/alx-low_level_programming/blob/master/0x0A-argc_argv/4-add.c)
 
 I used the C standard library function `strtol()` to convert the string
 recieved as command line argument to integer. `atoi()` does the same thing
