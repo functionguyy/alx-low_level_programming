@@ -36,7 +36,7 @@ then `argc` will be $3$.
 `"remind.c"`, and `argv[3]` will be a **NULL pointer**
 
 
-The **NULL pointer** the value of argc is generated considering $0$ as the first
+The value of `argc` is generated considering $0$ as the first
 number as opposed to the usual arithmetic count that starts with $1$ as the
 first number.
 
