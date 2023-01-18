@@ -29,9 +29,16 @@ enter this command-line into our bash shell
 ```shell
 ls -l remind.c
 ```
-then `argc` will be $3$. `argv[0]` will point to the string literal containing the program name.
+then `argc` will be $3$. 
+
+`argv[0]` will point to the string literal containing the program name.
 `argv[1]` will point to the string `"-l"`, `argv[2]` will point to the
 `"remind.c"`, and `argv[3]` will be a **NULL pointer**
+
+
+The **NULL pointer** the value of argc is generated considering $0$ as the first
+number as opposed to the usual arithmetic count that starts with $1$ as the
+first number.
 
 ### [0-whatsmyname.c](https://github.com/10xDatabro/alx-low_level_programming/blob/master/0x0A-argc_argv/0-whatsmyname.c)
 
@@ -47,6 +54,6 @@ like this:
 
 ```C
 void foo(int __attribute__((__unused__)) bar){
-	....
+	/* code block */
 }
 ```
