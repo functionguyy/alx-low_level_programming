@@ -58,8 +58,7 @@ void foo(int __attribute__((__unused__)) bar){
 }
 ```
 
-###
-[3-mul.c](https://github.com/10xDatabro/alx-low_level_programming/blob/master/0x0A-argc_argv/3-mul.c)
+### [3-mul.c](https://github.com/10xDatabro/alx-low_level_programming/blob/master/0x0A-argc_argv/3-mul.c)
 
 I used the C standard library function `atoi()` to convert the string number
 recieved as command line argument to integer. 
