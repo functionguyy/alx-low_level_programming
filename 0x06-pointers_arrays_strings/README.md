@@ -57,10 +57,10 @@ substition letter of each letter in the alphabet.
 Because there are 26 letters in the basic latin alphabet, ROT13 is its
 own inverse and when writing the code I add a way to indentify that a
 subsitution had already happened inorder for the algorithm to inverse it
-self. Hence I added the `found_idx` variable which remains initialized
-to zero until a substition has occured and then it value is set to the
-index where the subsition occured. The second condition in the `if` acts
-the subsitution control: 
+self. The `break` statement breaks out of the inner-most loop once a
+substitution has occured and `check_idx` keeps track of where the last
+substituion occured so as not to inverse it.
+
 ### 101-print-number.c
 When I used an `int` type for a very large negative number in a modulo
 arithmetic my code generated undefined results when an overflow
