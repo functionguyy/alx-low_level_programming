@@ -1,4 +1,16 @@
-0x06. C - More pointers, arrays and strings
+# 0x06. C - More pointers, arrays and strings
+
+Three types of string literals declaration
+
+```C
+char amessage[] = "Now is the time" /*an array */
+
+char *pmessage = "Now is the time" /* a pointer */
+
+char *message[] = {"Now is the time", "we have to act"} /* an array of
+							   pointers */
+
+```
 
 A `for` statement in `C` has the form:
 ```c
@@ -73,5 +85,3 @@ The following links give more details:
 
 - [link
 2](https://embeddedgurus.com/stack-overflow/2009/08/a-tutorial-on-signed-and-unsigned-integers/#:~:text=To%20convert%20a%20signed%20integer%20to%20an%20unsigned,c%3B%20b%20%3D%20%28unsigned%20int%29a%3B%20c%20%3D%20%28int%29b%3B)
-
-
