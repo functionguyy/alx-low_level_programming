@@ -1,6 +1,6 @@
 # 0x0F.C - Function pointers
 
-Function pointers store the starting address or entry point of the block of
+A function pointer is the starting address or entry point of the block of
 memory containing all the instructions in a function.
 
 Lets say we define a function named `Add()` as follows:
@@ -10,7 +10,7 @@ int Add(int a, int b)
 	return (a + b);
 }
 ```
-we can declare a function pointer that can point to `Add(int a, int b)` like this:
+we can declare a function pointer variable that can point to `Add(int a, int b)` like this:
 ```C
 int (*p)(int, int);
 
