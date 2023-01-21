@@ -17,10 +17,10 @@ int (*p)(int, int);
 
 ```
 `p` can point to any function which has two `int` type parameters and returns
-an `int` type. In this case `Add()` is such a function. The parentheses around
-`*p` is very important in the declaration. if its omitted the above
-declaration is no longer interpreted as function pointer variable but rather
-is intterpreted as a function that returns a pointer.
+an `int` type. In this case `Add()` is such a function. The parentheses `()`around
+`*p` is very important in the declaration. if it is omitted in the 
+declaration `*p` will not be interpreted by the C compiler as function pointer
+variable but rather it is interpreted as a function that returns a pointer.
 
 
 So you can make `p` point to `Add()` in the either of the following ways:
