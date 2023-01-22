@@ -46,6 +46,11 @@ p(2,3) /* a call to Add(int a, int b) */
 
 so a typical code snippet will be like
 ```C
+#include <stdio.h>
+/**
+* Demostrating usage of a function pointer 
+*/
+
 int Add(int a, int b)
 {
 	int num;
@@ -86,7 +91,65 @@ particular function pointer.
 
 To declare a function that returns a function pointer this is the syntax:
 ```C
-return_type_of_returning_function_pointer
-(*function_name_which_returns_function_pointer)(actual_function_parameters)(returning_function_parameters)
+return_type_of_returning_function_pointer (*function_name_which_returns_function_pointer)(actual_function_parameters)(returning_function_parameters)
 ```
+
+So declare a function that takes `char` type normal pointer as its parameter and returns a function
+pointer to any function that takes two `int` type parameter, you can write the
+prototype of function like this:
+```C
+int (*Convert(char *code))(int,int);
+```
+A then you can define the function like this:
+```C
+int (*Convert(char *code))(int,int)
+{
+	if (code == "+") 
+		return (&Add);
+	if (code == "-")
+		return (&Subtract);
+}
+```
+
+The syntax of function pointers can sometimes be confusing. So we can use a
+typedef statement to make things simpler
+```C
+typedef int (*f)(int,int);
+```
+Now we can simplify the `Convert` definition above as follows:
+```C
+f Convert(char *code)
+{
+	if (code == "+") 
+		return (&Add);
+	if (code == "-")
+		return (&Subtract);
+}
+
+```
+A typical code snippet will be like:
+```C
+#include <stdio.h>
+/** 
+* demostrating a function that returns a function pointer
+*/
+int main()
+{
+	int (*ptr)(int,int); /* or f ptr; if you have a typedef */
+	char *s;
+
+	s = "+";
+	ptr = Convert(s);
+	printf("%d\n", ptr(2,4));
+}
+```
+**OUTPUT**
+```Shell
+6
+```
+
+
+
+
+
 
