@@ -84,23 +84,25 @@ int main()
 
 ## RETURN FUNCTION POINTERS FROM A FUNCTION
 
-To return a function pointer from a function, the return type of function
-should be a pointer to another function. But the compiler doesn't accept such
-a return type for a function, so we need to define a type that represents that
-particular function pointer.
-
 To declare a function that returns a function pointer this is the syntax:
 ```C
 return_type_of_returning_function_pointer (*function_name_which_returns_function_pointer)(actual_function_parameters)(returning_function_parameters)
 ```
-
-So declare a function that takes `char` type normal pointer as its parameter and returns a function
-pointer to any function that takes two `int` type parameter, you can write the
-prototype of function like this:
+So if you want to declare a function that takes a normal `char` type pointer as
+its parameter and returns a function pointer to any function that takes two 
+`int` type parameter, you can write the prototype of function like this:
 ```C
 int (*Convert(char *code))(int,int);
 ```
-A then you can define the function like this:
+The syntax of function pointers can sometimes be confusing. So we can use a
+typedef statement to make things simpler for the return type `Convert()`
+```C
+typedef int (*f)(int,int);
+```
+This typedef defines a type for a function pointer that takes two `int`
+parameter and returns an `int`
+
+Then you can define the `Convert(char *code)` function like this:
 ```C
 int (*Convert(char *code))(int,int)
 {
@@ -110,13 +112,7 @@ int (*Convert(char *code))(int,int)
 		return (&Subtract);
 }
 ```
-
-The syntax of function pointers can sometimes be confusing. So we can use a
-typedef statement to make things simpler
-```C
-typedef int (*f)(int,int);
-```
-Now we can simplify the `Convert` definition above as follows:
+Or we use the typedef to simplify the `Convert` definition above as follows:
 ```C
 f Convert(char *code)
 {
