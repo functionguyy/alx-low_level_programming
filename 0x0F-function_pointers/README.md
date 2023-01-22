@@ -44,4 +44,49 @@ or
 p(2,3) /* a call to Add(int a, int b) */
 ```
 
+so a typical code snippet will be like
+```C
+int Add(int a, int b)
+{
+	int num;
+
+	num = a + b ; 
+
+	return (num);
+}
+
+
+int main()
+{
+	int (*p)(int, int); /* declare function pointer p that to points to
+			       any function that has two int type parameter
+			       and returns an int type */
+	int result;
+
+	p = &Add; /*set p the memory address of function Add */ 
+	result = (*p)(2,3); 
+
+	printf("%d\n", result);
+	return (0);
+}
+```
+**OUTPUT**
+```Shell
+5
+
+```
+
+
+## RETURN FUNCTION POINTERS FROM A FUNCTION
+
+To return a function pointer from a function, the return type of function
+should be a pointer to another function. But the compiler doesn't accept such
+a return type for a function, so we need to define a type that represents that
+particular function pointer.
+
+To declare a function that returns a function pointer this is the syntax:
+```C
+return_type_of_returning_function_pointer
+(*function_name_which_returns_function_pointer)(actual_function_parameters)(returning_function_parameters)
+```
 
