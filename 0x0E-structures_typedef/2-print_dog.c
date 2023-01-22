@@ -8,9 +8,10 @@
 
 void print_dog(struct dog *d)
 {
+
 	if (d)
 	{
-		if (!d->name && d->age && d->owner)
+		if (!(d->name) && d->age && d->owner)
 			printf("Name: (nil)\nAge: %.6f\nOwner: %s\n", d->age,
 					d->owner);
 		else if (d->name && !(d->age) && d->owner)
