@@ -30,7 +30,8 @@ int (*get_op_func(char *s))(int, int)
 		}
 		else
 		{
-			return (NULL);
+			printf("Error\n");
+			exit(99);
 		}
 		i++;
 	}
