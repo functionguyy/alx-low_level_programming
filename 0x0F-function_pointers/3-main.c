@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	if (strlen(argv[2] > 1))
 	{
 		printf("Error\n");
-		exit(98);
+		exit(99);
 	}
 
 	num1 = atoi(argv[1]);
