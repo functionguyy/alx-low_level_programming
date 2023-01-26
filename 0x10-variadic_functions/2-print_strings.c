@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 /**
+* print_strings - function that prints strings, followed by a new line
+* @separator: the string to be printed between the strings
+* @n: the number of strings passed to the function
 *
-*
-*
-*
+* Description: if separator is NULL don't print it. If one string is NULL
+* print (nil) instead
 */
 void print_strings(const char *separator, const unsigned int n, ...)
 {
