@@ -3,7 +3,7 @@
 /**
 * add_node - Function adds a new node at the beginning of a linked list
 * @head: pointer to pointer to the last added node
-* @str: pointer to str 
+* @str: pointer to str
 *
 * Return: the address of new element or NULL if its fails
 */
