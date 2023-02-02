@@ -100,3 +100,19 @@ of the head as you loop through the list to free the individual nodes. You
 transverse through the list by checking that the pointer to the next node is
 not `NULL`. after the loop ends the allocated memory in the head is freed and
 the head is freed.. 
+
+### 100-first.c
+To make your custom defined function to execute before the main function in C,
+the GNU C Compiler (gcc) has a feature to mark custom defined functions that
+should be executed before or after the `main()` function. For example if you want a custom
+defined function `beforemain()` that does not return anything and does not
+accept any argument __to be executed before the main function__ you can mark the function prototype like this:
+```C
+void beforemain(void) __attribute__ ((constructor));
+```
+You can read more about it in the following links:
+- [Execute user defined function before main() in C](https://qnaplus.com/execute-user-defined-function-before-main-in-c/)
+
+- [Functions that are executed before and after main() in C](https://www.geeksforgeeks.org/functions-that-are-executed-before-and-after-main-in-c/)
+
+
