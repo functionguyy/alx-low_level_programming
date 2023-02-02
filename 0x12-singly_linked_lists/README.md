@@ -79,4 +79,14 @@ struct node *new_node;
 ```
 
 
-
+### 3-add_node_end.c
+To add a new node to the end of a linked list, you have to first set the
+pointer to the next node memeber in the new node to `NULL` then check that the current
+head of the linked list is not a `NULL` pointer once that check is done, you
+should create a temporary pointer variable to hold the pointer of the head, so
+that you don't lose the pointer to the head of the linked list while you
+loop through the list to look for the current end of the list. After
+that, use the temporary pointer variable to transverse through the list so
+that you can locate its current end(the node whose pointer to the next node is
+`NULL`) then make that end pointer to point to the new node you about
+to add to the linked list.
