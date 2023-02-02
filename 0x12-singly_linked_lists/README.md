@@ -90,3 +90,13 @@ that, use the temporary pointer variable to transverse through the list so
 that you can locate its current end(the node whose pointer to the next node is
 `NULL`) then make that end pointer to point to the new node you about
 to add to the linked list.
+
+### 4-free_list.c
+To Free the allocated memory in the linked list. You have check first that
+there are elements in the list that is to check that the head of the
+list is not pointing to a `NULL` address. Then you need to create a pointer
+variable of the node struct type that will hold the address of the current position
+of the head as you loop through the list to free the individual nodes. You
+transverse through the list by checking that the pointer to the next node is
+not `NULL`. after the loop ends the allocated memory in the head is freed and
+the head is freed.. 
