@@ -3,13 +3,19 @@
 #include "lists.h"
 /**
 * free_listint2 - function frees a listint_t list.
-* head - pointer to the pointer to the head of the list
+* @head: pointer to the pointer to the head of the list
 *
 * Return: Nothing
 */
 void free_listint2(listint_t **head)
 {
 	listint_t *cur_node;
+
+	if (*head == NULL)
+	{
+		exit();
+
+	}
 
 	while (*head != NULL)
 	{
