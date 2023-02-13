@@ -30,6 +30,13 @@ following header files
 #include <fcntl.h>
 ```
 The `open()` system call opens the file specified by `pathname`. 
+```C
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int open(const char *pathname, int flags, mode_t mode);
+```
 
 If the `open()` call successfully opened the file specified by `pathname`, 
 a non-negative integer value is returned.
