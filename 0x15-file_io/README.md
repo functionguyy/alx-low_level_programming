@@ -25,7 +25,9 @@ int openat(int dirfd, const char *pathname, int flags, mode_t mode);
 To use any of the above prototypes in your programs, you have include the
 following header files
 ```C
-
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 ```
 The `open()` system call opens the file specified by `pathname`. 
 
@@ -60,7 +62,15 @@ executed.
 The file creation flags are: `O_CREAT`, `O_EXCL`, `O_CLOEXEC`, `O_DIRECTORY`,
 `O_NOCTTY`, `O_NOFOLLOW`, `O_TMPFILE`, and `O_TRUNC`.
 
-(for the list of file status flags run `man 2 open` on your bash shell and read
+- `O_CREAT` - if specified in `flags` the `open()` call will create a new file
+if the file specified by `pathname` does not exist.
+
+- `O_TRUNC` - if specified in `flags` argument together with `O_RDWR` or
+`O_WRONLY`, the `open()` call  will delete everything previously saved on the file 
+specified by `pathname` if the file is a regular file.
+
+
+(for the complete list of file status flags and more details run `man 2 open` on your bash shell and read
  the manual)
 
 If `O_CREAT` or `O_TMPFILE` is set in the `flags` argument then you must set
@@ -69,24 +79,44 @@ the `mode` argument parameter as well. You can omit it otherwise.
 `mode` sets the permission access of future usage of the file.
 
 The following symbolic constants are provided for mode:
-|Symbolic constant | Value | Meaning
-| ---------------- | ------ | -------- |
-| `S_IRWXU` | 00700 | User (file owner) has read, write, and execute permission
-  `S_IRUSR` | 00400 | User has read permission
-
+|Symbolic constant | Meaning
+| ---------------- | -------- 
+| `S_IRWXU` | User (file owner) has read, write, and execute permission
+  `S_IRUSR` | User has read permission
+  `S_IWUSR` | User has write permission
+  `S_IXUSR` | User has execute permission
+  `S_IRWXG` | Group has read, write, and execute permission
+  `S_IRGRP` | Group has read permission
+  `S_IWGRP` | Group has write permission
+  `S_IXGRP` | Group has write permission
+  `S_IRWXO` | Others have read, write, and execute permission
+  `S_IROTH` | Others have read permission
+  `S_IWOTH` | Others have write permission
+  `S_IXOTH` | Others have execute permission
 
 ```C
 /* To open the file specified by this file path /0x15-file_io/README.md for
- * writing only either by creating it(if it does not already exist).
+ * writing only either by creating it (if it does not already exist), or by
+ * truncating its length to 0 (if it does exist). In the case where the file
+ * doesn't exist, if the call open() creates a new file, the permission access
+ * mode to permit reading and writing by owner, and to permit reading only by
+ * group members and others.
  */
 
 #include
 #include <fcntl.h>
 
-int fd;
-char *pathname = "/0x15-file_io/README.md";
 
-fd = open(pathname, O_WRONLY | O_CREAT)
+int main(void)
+{
+	int fd;
+	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+	char *pathname = "/0x15-file_io/README.md";
+
+	fd = open(pathname, O_WRONLY | O_CREAT | O_TRUNC, mode);
+
+	return (0);
+}
 
 ```
 
