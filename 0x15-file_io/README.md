@@ -53,17 +53,26 @@ following access modes:
 Zero or more **file creation flags** and **file status flags** can be
 bitwise-or'd in `flags` argument.  
 
-**file creation flags** affect how the `open()` call is excuted while the
-**file status flags** affect how other input/ouput operations on the file is
+**file creation flags** affect how the `open()` call is executed while the
+**file status flags** affect how subsequent input/ouput operations on the file is
 executed.
 
 The file creation flags are: `O_CREAT`, `O_EXCL`, `O_CLOEXEC`, `O_DIRECTORY`,
 `O_NOCTTY`, `O_NOFOLLOW`, `O_TMPFILE`, and `O_TRUNC`.
 
 (for the list of file status flags run `man 2 open` on your bash shell and read
- the manua)
+ the manual)
 
-The _mode_ argument must 
+If `O_CREAT` or `O_TMPFILE` is set in the `flags` argument then you must set
+the `mode` argument parameter as well. You can omit it otherwise.
+
+`mode` sets the permission access of future usage of the file.
+
+The following symbolic constants are provided for mode:
+|Symbolic constant | Value | Meaning
+| ---------------- | ------ | -------- |
+| `S_IRWXU` | 00700 | User (file owner) has read, write, and execute permission
+  `S_IRUSR` | 00400 | User has read permission
 
 
 ```C
