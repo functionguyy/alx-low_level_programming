@@ -99,6 +99,7 @@ argument:
 
 
 ### Opening a File in Writing only access mode 
+
 ```C
 /* Open the file specified by this file path "/0x15-file_io/README.md" for
  * writing only, either by creating it (if the file does not already exist), or by
@@ -123,10 +124,8 @@ int main(void)
 }
 
 ```
-
-
-
 ### Opening a File using an Existence Check
+
 ```C
 /* The following example uses the open() function to try to create the
  * LOCKFILE file and open it for writing. since the open() function specifies
@@ -143,20 +142,31 @@ int main(void)
 int pfd; /* integer for file descriptor returned by open() call. */
 
 if ((pfd = open(LOCKFILE, O_WRONLY | O_CREAT | O_EXCL, 
-      S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1 )
+				S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1 )
 {
  	fprintf(stderr, "Cannot open /etc/ptmp. Try again later. \n");
 	exit(1);
 
 }
-
 ```
 
+
+### Using openat() to open a file
+
+The `openat()` system call operates in exactly the same way as `open()`,
+except for some differences (run `man 2 open` on your bash terminal and read
+man page for more details)
+
+**NB**: the `dirfd` argument paramter is the value returned by `open()` when
+`O_PATH` file status flag is specified as a parameter in its `flags` argument.
+
 ## How to create a file
+
 You can use `open()` to create a new regular file if you specify `O_CREAT`
 file creation flag as a parameter of the its `flags` argumment.
 
 ```C
+
 /* Open file specified in pathname in read and write mode or 
  * create a new regular file if file specified in pathname does not exit
  * and open it in read and write mode  
@@ -190,5 +200,64 @@ of files:
 - `mkdir`: Directories
 - `symlink`: Symbolic link
 
+### How to write to a file 
+`write()` system call is used to write to file by using a file descriptor to
+indentify the file it should write to. The prototype of `write()` is defined
+as:
+```C
+#include <unistd.h>
 
+ssize_t write(int fd, const void *buf, size_t count);
+```
+Type `ssize_t` and `size_t` are respectively unsigned and signed types.
+
+`fd` takes the file descriptor parameter of the file you want to
+write. `buf` takes the pointer to the data to be written and `count` takes the
+value of the total number of bytes in `buf` to be written to the file.
+
+for example to write some data to the standard output device (file descriptor
+1) you can do this:
+
+```C
+#include <unistd.h>
+
+int main()
+{
+	char *buf = "hello";
+
+	write(1, buf, 6); 
+
+	return (0);
+}
+```
+If `write()` executes successfully, it returns the number of bytes written. if
+it fails, it returns $-1$ and `errno` is set to indicate the cause of error
+
+```C
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+	int count;
+	char *buf = "hello";
+
+	count = write(1,buf,6);
+	printf("Total bytes written: %d\n", count);
+
+	return (0);
+
+}
+```
+
+A successful return from `write()` does not make any guarantee that data has
+been committed to disk. The only way to make sure is to call `fsync(fd)` after
+you are done writing al your data.
+
+A successful `write()` may transfer fewer than `count` bytes. In event of a
+partial write, the caller make another `write()` call to transfer the
+remaining bytes. The subsequent call will transfer further bytes or may result
+in an error. (Run `man 2 write on your bash terminal for more details).
+
+## How to read a file
 
