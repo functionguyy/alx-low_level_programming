@@ -1,8 +1,12 @@
 # 0x15. C - FILE I/O
 ## How to create, open, close, read and write files
 
-You can open a file through a process by using any of the system
-call variations defined with the following function prototypes:
+### How to open a file
+The `open()` system call is the first step required for a process to acess an
+existing file.
+
+You can open a file through a process by using any of the variations of the system
+call defined with the following function prototypes:
 
 ```C
 int open(const char *pathname, int flags);
@@ -10,14 +14,7 @@ int open(const char *pathname, int flags);
 /* Use this to set the user permission mode for the opened file */
 int open(const char *pathname, int flags, mode_t mode);
 ```
-OR
 
-```C
-int openat(int dirfd, const char *pathname, int flags);
-
-/* Use to set the user permission mode for the opened file */
-int openat(int dirfd, const char *pathname, int flags, mode_t mode);
-```
 To use any of the above prototypes in your programs, you should include the
 following header files
 
@@ -60,7 +57,7 @@ The  file creation flags parameters are: `O_CREAT`, `O_EXCL`, `O_CLOEXEC`, `O_DI
 
 For example, to make your `open()` call create a new regualr file if the
 regualar file you specified in the `pathname` paramter does not exist, 
-you can include `O_CREATE` in the `flags` argument.
+you can include `O_CREAT` in the `flags` argument.
 
 - `O_CREAT` - if specified as a parameter of the `flags` argument of `open()`
 will make the call create a new file if the file specified by the `pathname`
@@ -74,8 +71,8 @@ delete everything previously saved on the file  specified by `pathname` if the f
 (for the complete list of file status flags and more details run `man 2 open` on your bash shell and read
  the manual)
 
-If `O_CREAT` or `O_TMPFILE` is set in the `flags` argument then you must set 
-the `mode` argument parameter as well. If not then you can omit it.
+If `O_CREAT` or `O_TMPFILE` is set as a `flags` argument parameter then you must set 
+the `mode` argument parameter as well. Otherwise you can omit it.
 
 The parameter of the `mode` argument will set the permission access of future usage of the file.
 
@@ -98,7 +95,7 @@ argument:
   `S_IXOTH` | Others have execute permission
 
 
-### Opening a File in Writing only access mode 
+#### Opening a File in Writing only access mode 
 
 ```C
 /* Open the file specified by this file path "/0x15-file_io/README.md" for
@@ -124,7 +121,7 @@ int main(void)
 }
 
 ```
-### Opening a File using an Existence Check
+#### Opening a File using an Existence Check
 
 ```C
 /* The following example uses the open() function to try to create the
@@ -139,19 +136,28 @@ int main(void)
 
 #define LOCKFILE "/etc/ptmp"
 
-int pfd; /* integer for file descriptor returned by open() call. */
-
-if ((pfd = open(LOCKFILE, O_WRONLY | O_CREAT | O_EXCL, 
-				S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1 )
+int main()
 {
- 	fprintf(stderr, "Cannot open /etc/ptmp. Try again later. \n");
-	exit(1);
+       
+	int pfd; /* integer for file descriptor returned by open() call. */
 
+	if ((pfd = open(LOCKFILE, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1 )
+	{
+ 		fprintf(stderr, "Cannot open /etc/ptmp. Try again later. \n");
+		exit(1);
+
+	}
 }
 ```
 
 
-### Using openat() to open a file
+#### Using openat() to open a file
+```C
+int openat(int dirfd, const char *pathname, int flags);
+
+/* Use to set the user permission mode for the opened file */
+int openat(int dirfd, const char *pathname, int flags, mode_t mode);
+```
 
 The `openat()` system call operates in exactly the same way as `open()`,
 except for some differences (run `man 2 open` on your bash terminal and read
@@ -160,7 +166,7 @@ man page for more details)
 **NB**: the `dirfd` argument paramter is the value returned by `open()` when
 `O_PATH` file status flag is specified as a parameter in its `flags` argument.
 
-## How to create a file
+### How to create a file
 
 You can use `open()` to create a new regular file if you specify `O_CREAT`
 file creation flag as a parameter of the its `flags` argumment.
@@ -188,17 +194,17 @@ and your program call has write permission to the file, `creat()` will delete
 all the data in the file and set its size to 0.
 
 Although the use of `open()` to create a regular file is preferable to the use
-of `creat()`.
+of `creat()`..
 
 There are also some other system calls that are used to create special types
 of files:
 
-- `mknod`: Regular files, FIFO(first-in-first-out) files, or special files
-- `mkfifo`: Named pipe (FIFO) files
-- `pipe`: Unnamed pipe
-- `socket`: Sockets
-- `mkdir`: Directories
-- `symlink`: Symbolic link
+- `mknod`: create regular files, FIFO(first-in-first-out) files, or special files
+- `mkfifo`: create named pipe (FIFO) files
+- `pipe`: create unnamed pipe
+- `socket`: create sockets
+- `mkdir`: create directories
+- `symlink`: create symbolic link
 
 ### How to write to a file 
 `write()` system call is used to write to file by using a file descriptor to
@@ -209,15 +215,16 @@ as:
 
 ssize_t write(int fd, const void *buf, size_t count);
 ```
-Type `ssize_t` and `size_t` are respectively unsigned and signed types.
+`ssize_t` and `size_t` are respectively unsigned and signed integer data types.
 
 `fd` takes the file descriptor parameter of the file you want to
 write. `buf` takes the pointer to the data to be written and `count` takes the
 value of the total number of bytes in `buf` to be written to the file.
 
-for example to write some data to the standard output device (file descriptor
-1) you can do this:
+Then `write()` writes up to `count` bytes from the buffer starting at `buf` to
+the file referred to by `fd`.
 
+for example to write some data to the standard output device (file descriptor 1) you can do this:
 ```C
 #include <unistd.h>
 
@@ -230,8 +237,8 @@ int main()
 	return (0);
 }
 ```
-If `write()` executes successfully, it returns the number of bytes written. if
-it fails, it returns $-1$ and `errno` is set to indicate the cause of error
+
+If `write()` executes successfully, it returns the number of bytes written
 
 ```C
 #include <stdio.h>
@@ -251,13 +258,29 @@ int main()
 ```
 
 A successful return from `write()` does not make any guarantee that data has
-been committed to disk. The only way to make sure is to call `fsync(fd)` after
-you are done writing al your data.
+been committed to disk. The only way to make sure is to call `fsync(fd)`after
+you are done writing al your data. (run `man 2 fsync` on your bash terminal for more details)
 
 A successful `write()` may transfer fewer than `count` bytes. In event of a
-partial write, the caller make another `write()` call to transfer the
+partial write, the caller can make another `write()` call to transfer the
 remaining bytes. The subsequent call will transfer further bytes or may result
-in an error. (Run `man 2 write on your bash terminal for more details).
+in an error. (Run `man 2 write on your bash terminal and read Notes section for more details).
 
-## How to read a file
+if `write()` fails to execute, it returns $-1$ and `errno` is set to indicate the cause of error
+
+if `count` is zero and `fd` refers to a regular file, then `write()` may
+return a failure status if one of the errors specified in the write(2) man
+page is detected, if no error is detectd, or error detection is not performed,
+$0$ will be returned without causing any other effect. For non-regular files,
+the results are unspecified..
+
+
+### How to read a file
+
+
+### Resources
+
+- [Program on open() system call](https://dextutor.com/open-system-call/)
+- [write()/read() system call](https://dextutor.com/write-read-system-call/)
+- 
 
