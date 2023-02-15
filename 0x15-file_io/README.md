@@ -282,5 +282,13 @@ the results are unspecified..
 
 - [Program on open() system call](https://dextutor.com/open-system-call/)
 - [write()/read() system call](https://dextutor.com/write-read-system-call/)
-- 
+- [Using the open() system call](https://stackoverflow.com/questions/596306/using-the-open-system-call)
+- [file descriptors explained in simple terms](https://stackoverflow.com/questions/5256599/what-are-file-descriptors-explained-in-simple-terms/5256705#5256705)
+- [file descriptors](https://bottomupcs.com/ch01s03.html)
+- [Everything is a file](https://en.wikipedia.org/wiki/Everything_is_a_file)
+- [Open() system call explained](https://pubs.opengroup.org/onlinepubs/9699919799/functions/open.html)
+- [file descriptor explained](https://www.computerhope.com/jargon/f/file-descriptor.htm)
+- [Using file descriptors](https://sites.ualberta.ca/dept/chemeng/AIX-43/share/man/info/C/a_doc_lib/aixprggd/genprogc/fdescript.htm)
+- [File creation and removal](https://sites.ualberta.ca/dept/chemeng/AIX-43/share/man/info/C/a_doc_lib/aixprggd/genprogc/file_create_remove.htm#A9F59BBA707judy)
+- [System call vs Function call](https://pediaa.com/what-is-the-difference-between-system-call-and-function-call/#:~:text=In%20brief%2C%20system%20calls%20are%20associated%20with%20kernel,by%20a%20program%20to%20perform%20a%20specific%20task.)
 
