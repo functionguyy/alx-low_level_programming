@@ -31,7 +31,7 @@ int append_text_to_file(const char *filename, char *text_content)
 		close(fd);
 		return (1);
 	}
-	n_write = write(fd, tex_content, s_count);
+	n_write = write(fd, text_content, s_count);
 
 	if (n_write == -1 || n_write < s_count)
 	{
