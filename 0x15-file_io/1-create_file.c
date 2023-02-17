@@ -39,15 +39,11 @@ int create_file(const char *filename, char *text_content)
 	{
 		fd = open(filename, O_RDWR | O_TRUNC);
 	}
-	else
-	{
-		return (-1);
-	}
+
 	if (text_content == NULL)
 		return (1);
 
 	s_count = strlen(text_content);
-	s_count = s_count + 1;
 
 	n_write = write(fd, text_content, s_count);
 
@@ -63,7 +59,7 @@ int create_file(const char *filename, char *text_content)
 * check_file_exist - check if the file exit
 * @n: integer
 *
-* Return: 1 if file exist or the integer otherwise
+* Return: 1 if file exist or 0 otherwise
 */
 int check_file_exist(int n)
 {
@@ -71,5 +67,5 @@ int check_file_exist(int n)
 	{
 		return (1);
 	}
-	return (n);
+	return (0);
 }
