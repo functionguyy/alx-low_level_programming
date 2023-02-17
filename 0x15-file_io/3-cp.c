@@ -20,7 +20,7 @@ void close_fd(int fd);
 */
 int main(int ac, char *av[])
 {
-	int n_read, n_write, fd_from, fd_to;
+	int n_read, n_write, fd_from, fd_to, n;
 	char buf[BUFSIZE];
 
 	if (ac != 3)
@@ -38,9 +38,15 @@ int main(int ac, char *av[])
 		dprintf(STDERR_FILENO, "Error: Can't read %s\n", av[1]);
 		exit(98);
 	}
+	
 
 	while ((n_read = read(fd_from, buf, BUFSIZE)) > 0)
 	{
+		if (n_read == -1 || errno == EACCES)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read %s\n", av[1]);
+			exit(98)
+		}
 
 		n_write = write(fd_to, buf, n_read);
 
