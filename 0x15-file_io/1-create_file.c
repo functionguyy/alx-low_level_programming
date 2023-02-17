@@ -45,7 +45,7 @@ int create_file(const char *filename, char *text_content)
 
 	if (n_write == -1 || n_write < s_count)
 		return (-1);
-	
+
 	close(fd);
 
 	return (1);
