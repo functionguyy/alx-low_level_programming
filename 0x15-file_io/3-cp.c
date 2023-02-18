@@ -9,7 +9,7 @@
 
 int open_to_file(char *filename);
 int open_from_file(char *filename);
-void close_fd(int fd1, int fd2);
+void close_fd(int fd);
 
 /**
 * main - program copies the content of a file to another file
@@ -31,10 +31,10 @@ int main(int ac, char *av[])
 
 	fd_to = open_to_file(av[2]);
 	fd_from = open_from_file(av[1]);
-	if (fd_from == -1 || errno == EACCES)
+	if (fd_from == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", av[1]);
-		close_fd(fd_from, fd_to);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+		close_fd(fd_to);
 		exit(98);
 	}
 
@@ -47,18 +47,22 @@ int main(int ac, char *av[])
 		if (n_write == -1 || n_write < n_read)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-			close_fd(fd_from, fd_to);
+			close_fd(fd_from);
+			close_fd(fd_to);
 			exit(99);
 		}
 	}
 
-	if (n_read == -1 || errno == EACCES)
+	if (n_read == -1 && errno == EACCES)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", av[1]);
-		close_fd(fd_from, fd_to);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+		close_fd(fd_from);
+		close_fd(fd_to);
 		exit(98);
 	}
 
+	close_fd(fd_from);
+	close_fd(fd_to);
 	return (0);
 }
 
@@ -117,20 +121,14 @@ int open_from_file(char *filename)
 * error message to POSIX standard error and exit with status 100
 * Return: nothing if successful or exit with status code 100
 */
-void close_fd(int fd1, int fd2)
+void close_fd(int fd)
 {
-	int cfd1, cfd2;
+	int cfd;
 
-	cfd1 = close(fd1);
-	cfd2 = close(fd2);
-	if (cfd1 == -1)
+	cfd = close(fd);
+	if (cfd == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", cfd1);
-		exit(100);
-	}
-	if (cfd2 == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", cfd2);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
