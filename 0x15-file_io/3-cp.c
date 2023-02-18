@@ -20,7 +20,7 @@ void close_fd(int fd);
 */
 int main(int ac, char *av[])
 {
-	int n_read, n_write, fd_from, fd_to, n;
+	int n_read, n_write, fd_from, fd_to;
 	char buf[BUFSIZE];
 
 	if (ac != 3)
