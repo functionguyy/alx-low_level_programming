@@ -53,7 +53,7 @@ int main(int ac, char *av[])
 		}
 	}
 
-	if (n_read == -1 && errno == EACCES)
+	if (n_read == -1 || errno == EACCES)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		close_fd(fd_from);
@@ -114,8 +114,7 @@ int open_from_file(char *filename)
 
 /**
 * close_fd - closes file descriptor
-* @fd1: file descriptor of first argument
-* @fd2: file descriptor of second argument
+* @fd: file descriptor
 *
 * Description: if close_fd() can not close a file descriptor it will print
 * error message to POSIX standard error and exit with status 100
