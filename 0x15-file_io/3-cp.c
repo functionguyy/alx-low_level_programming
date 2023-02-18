@@ -32,21 +32,8 @@ int main(int ac, char *av[])
 	fd_to = open_to_file(av[2]);
 	fd_from = open_from_file(av[1]);
 
-	n_read = read(fd_from, buf, BUFSIZE);
-	if (n_read == -1 || errno == EACCES)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read %s\n", av[1]);
-		exit(98);
-	}
-	
-
 	while ((n_read = read(fd_from, buf, BUFSIZE)) > 0)
 	{
-		if (n_read == -1 || errno == EACCES)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read %s\n", av[1]);
-			exit(98)
-		}
 
 		n_write = write(fd_to, buf, n_read);
 
@@ -55,6 +42,12 @@ int main(int ac, char *av[])
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 			exit(99);
 		}
+	}
+
+	if (n_read == -1 || errno == EACCES)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read %s\n", av[1]);
+		exit(98);
 	}
 
 	close_fd(fd_from);
