@@ -277,6 +277,17 @@ the results are unspecified..
 
 ### How to read a file
 
+`read()` system call is used to read a file by using a file descriptor to
+indentify the file it should read from. The prototype of `read()` is defined
+as:
+```C
+ssize_t read(int fd, void *buf, size_t count);
+```
+where `ssize_t` is a `signed integer` and `size_t` is an `unsigned integer`
+
+`read()` attempts to read up to `count` bytes from file descriptor `fd` into the
+buffer starting at `buf`
+
 
 ### Resources
 
