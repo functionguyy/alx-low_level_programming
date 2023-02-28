@@ -3,9 +3,11 @@
 Three types of string literals declaration
 
 ```C
-char amessage[] = "Now is the time" /*an array */
+char amessage[] = "Now is the time" /*a string variable or an array of
+				      characters*/
 
-char *pmessage = "Now is the time" /* a pointer */
+char *pmessage = "Now is the time" /* a string literal or a pointer to the
+				      first letter */
 
 char *message[] = {"Now is the time", "we have to act"} /* an array of
 							   pointers */
