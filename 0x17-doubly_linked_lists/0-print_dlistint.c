@@ -22,9 +22,7 @@ size_t print_dlistint(const dlistint_t *h)
 			node_count++;
 			h = h->next;
 		}
-
-		return (node_count);
 	}
 
-	return (EXIT_FAILURE);
+	return (node_count);
 }
