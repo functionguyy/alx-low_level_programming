@@ -143,7 +143,9 @@ int main()
 ```Shell
 6
 ```
-
+## Resources
+- [Pointers to function](https://publications.gbdirect.co.uk//c_book/chapter5/function_pointers.html)
+- [Function pointers](https://www.cs.cmu.edu/~ab/15-123N09/lectures/Lecture%2008%20-%20Function%20Pointers.pdf)
 
 
 
