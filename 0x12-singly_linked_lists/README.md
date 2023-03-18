@@ -115,4 +115,11 @@ You can read more about it in the following links:
 
 - [Functions that are executed before and after main() in C](https://www.geeksforgeeks.org/functions-that-are-executed-before-and-after-main-in-c/)
 
+## Data structures Resources
+- [Tutorials Point](https://www.tutorialspoint.com/data_structures_algorithms/data_structures_basics.htm)
+- [Geeks for Geeks](https://www.geeksforgeeks.org/data-structures/)
+
+## How to Select the Appropriate Data Structure
+- [Careerdrill](https://www.careerdrill.com/blog/coding-interview/choosing-the-right-data-structure-to-solve-problems/)
+
 
