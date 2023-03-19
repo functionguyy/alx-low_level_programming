@@ -28,6 +28,7 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 				break;
 			count++;
 		}
+		return (cur_node);
 	}
 	return (NULL);
 }
