@@ -16,6 +16,7 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 	dlistint_t *cur_node;
 
 	count = 0;
+	cur_node = NULL;
 
 	if (head)
 	{
@@ -27,6 +28,7 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 				break;
 			count++;
 		}
+		return (cur_node);
 	}
-	return (cur_node);
+	return (NULL);
 }
