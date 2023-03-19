@@ -25,9 +25,10 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 			cur_node = head;
 			head = cur_node->next;
 			if (count == index)
-				return (cur_node);
+				break;
 			count++;
 		}
+		return (cur_code)
 	}
 	return (NULL);
 }
