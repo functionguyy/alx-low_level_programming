@@ -21,7 +21,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *new_node_to_tail = NULL;
 	dlistint_t *temp = NULL;
 
-	if (h)
+	if (h || *h)
 	{
 		/* slice the current node at given index from linked list */
 		cur_node_at_idx = get_dnodeint_at_index(*h, idx);
