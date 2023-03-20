@@ -27,20 +27,16 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		/* take the list to the beginning */
 		while (head->prev != NULL)
 		{
-			head = head->prev; 
+			head = head->prev;
 		}
 
 		if (idx == 0)
-		{
-			return(add_dnodeint(&head, n));
-		}
+			return (add_dnodeint(&head, n));
 
 		/* get the current node at index before given index from linked list */
 		cur_node_at_idx_before = get_dnodeint_at_index(head, (idx - 1));
 		if (cur_node_at_idx_before == NULL)
 			return (NULL);
-
-
 
 		/* save address of current node at given index */
 		temp = cur_node_at_idx_before->next;
@@ -51,7 +47,6 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		new_node_at_given_idx = add_dnodeint_end(&cur_node_at_idx_before, n);
 		if (new_node_at_given_idx == NULL)
 			return (NULL);
-
 
 		/*connect the new node to previous node at given position */
 		new_node_at_given_idx->next = temp;
@@ -88,7 +83,7 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 			head = cur_node->next;
 			if (count == index)
 				return (cur_node);
-			count++;	
+			count++;
 		}
 	}
 	return (NULL);
