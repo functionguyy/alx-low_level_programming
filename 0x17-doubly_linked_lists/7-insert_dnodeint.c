@@ -1,5 +1,6 @@
 #include "lists.h"
 #include <stdlib.h>
+
 /**
  * insert_dnodeint_at_index - function that inserts a new node at a given
  * position
@@ -18,41 +19,41 @@
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 	dlistint_t *cur_node_at_idx_before = NULL;
-	dlistint_t *new_node_at_given_idx = NULL;
-	dlistint_t *temp = NULL;
-	dlistint_t *head = *h;
+	dlistint_t *new_node = NULL;
 
 	if (h)
 	{
-		/* take the list to the beginning */
-		while (head->prev != NULL)
+		/* Add new node to beginning of list if given index is 0 */
+		if (idx == 0)
 		{
-			head = head->prev;
+			return (add_dnodeint(h, n));
+		}
+		else
+		{
+			/* get the current node at index before given index in linked list */
+			cur_node_at_idx_before = get_dnodeint_at_index(*h, (idx - 1));
+			if (cur_node_at_idx_before == NULL)
+				return (NULL);
 		}
 
-		if (idx == 0)
-			return (add_dnodeint(&head, n));
+		/**
+		 * Add new node to end of list if current node at index before given
+		 * index is the last node of the list
+		 */
+		if (cur_node_at_idx_before->next == NULL)
+			return (add_dnodeint_end(&cur_node_at_idx_before, n));
 
-		/* get the current node at index before given index from linked list */
-		cur_node_at_idx_before = get_dnodeint_at_index(head, (idx - 1));
-		if (cur_node_at_idx_before == NULL)
+		new_node = malloc(sizeof(dlistint_t));
+		if (new_node == NULL)
 			return (NULL);
 
-		/* save address of current node at given index */
-		temp = cur_node_at_idx_before->next;
-		/*break the linked list to create entry point for new node */
-		cur_node_at_idx_before->next = NULL;
+		new_node->n = n;
+		new_node->next = cur_node_at_idx_before->next;
+		cur_node_at_idx_before->next->prev = new_node;
+		new_node->prev = cur_node_at_idx_before;
+		cur_node_at_idx_before->next = new_node;
 
-		/* Add new node  and connect it to the node before given idx*/
-		new_node_at_given_idx = add_dnodeint_end(&cur_node_at_idx_before, n);
-		if (new_node_at_given_idx == NULL)
-			return (NULL);
-
-		/*connect the new node to previous node at given position */
-		new_node_at_given_idx->next = temp;
-		temp->prev = new_node_at_given_idx;
-
-		return (new_node_at_given_idx);
+		return (new_node);
 	}
 	return (NULL);
 }
@@ -88,4 +89,3 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 	}
 	return (NULL);
 }
-
