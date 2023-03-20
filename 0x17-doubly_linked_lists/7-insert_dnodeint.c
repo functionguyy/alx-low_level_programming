@@ -17,12 +17,12 @@
 
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *cur_node_at_idx = NULL;
-	dlistint_t *new_node_to_tail = NULL;
+	dlistint_t *cur_node_at_idx_before = NULL;
+	dlistint_t *new_node_at_given_idx = NULL;
 	dlistint_t *temp = NULL;
 	dlistint_t *head = *h;
 
-	if (h && (idx >= 0))
+	if (h)
 	{
 		/* take the list to the beginning */
 		while (head->prev != NULL)
