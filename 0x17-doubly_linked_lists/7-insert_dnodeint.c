@@ -21,7 +21,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *new_node_to_tail = NULL;
 	dlistint_t *temp = NULL;
 
-	if (h || *h)
+	if (h && (idx >= 0))
 	{
 		/* slice the current node at given index from linked list */
 		cur_node_at_idx = get_dnodeint_at_index(*h, idx);
@@ -38,8 +38,15 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 
 
 		/*connect the new node to node before former node at given position */
-		new_node_to_tail->prev = temp;
-		temp->next = new_node_to_tail;
+		if (idx == 0)
+		{
+			return (new_node_to_tail);
+		}
+		else
+		{
+			new_node_to_tail- = temp;
+			temp->next = new_node_to_tail;
+		}
 
 		return (new_node_to_tail);
 	}
@@ -68,25 +75,12 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 	{
 		while (head != NULL)
 		{
-			if (index <= 0)
-			{
-				cur_node = head;
-				head = cur_node->prev;
-				if (count == index)
-					return (cur_node);
-				count--;
-			}
-			
-			if (index > 0)
-			{
 				cur_node = head;
 				head = cur_node->next;
 				if (count == index)
 					return (cur_node);
 				count++;	
-			}
 		}
-		return (NULL);
 	}
 	return (NULL);
 }
