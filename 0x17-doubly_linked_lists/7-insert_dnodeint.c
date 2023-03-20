@@ -20,35 +20,44 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *cur_node_at_idx = NULL;
 	dlistint_t *new_node_to_tail = NULL;
 	dlistint_t *temp = NULL;
+	dlistint_t *head = *h;
 
 	if (h && (idx >= 0))
 	{
-		/* slice the current node at given index from linked list */
-		cur_node_at_idx = get_dnodeint_at_index(*h, idx);
-		if (cur_node_at_idx == NULL)
-			return (NULL);
+		/* take the list to the beginning */
+		while (head->prev != NULL)
+		{
+			head = head->prev; 
+		}
 
-		/* save node before current node at given index */
-		temp = cur_node_at_idx->prev;
-
-		/* Add new node  and connect it to the current node at given position */
-		new_node_to_tail = add_dnodeint(&cur_node_at_idx, n);
-		if (new_node_to_tail == NULL)
-			return (NULL);
-
-
-		/*connect the new node to node before former node at given position */
 		if (idx == 0)
 		{
-			return (new_node_to_tail);
-		}
-		else
-		{
-			new_node_to_tail->prev = temp;
-			temp->next = new_node_to_tail;
+			return(add_dnodeint(&head, n));
 		}
 
-		return (new_node_to_tail);
+		/* get the current node at index before given index from linked list */
+		cur_node_at_idx_before = get_dnodeint_at_index(head, (idx - 1));
+		if (cur_node_at_idx_before == NULL)
+			return (NULL);
+
+
+
+		/* save address of current node at given index */
+		temp = cur_node_at_idx_before->next;
+		/*break the linked list to create entry point for new node */
+		cur_node_at_idx_before->next = NULL;
+
+		/* Add new node  and connect it to the node before given idx*/
+		new_node_at_given_idx = add_dnodeint_end(&cur_node_at_idx_before, n);
+		if (new_node_at_given_idx == NULL)
+			return (NULL);
+
+
+		/*connect the new node to previous node at given position */
+		new_node_at_given_idx->next = temp;
+		temp->prev = new_node_at_given_idx;
+
+		return (new_node_at_given_idx);
 	}
 	return (NULL);
 }
