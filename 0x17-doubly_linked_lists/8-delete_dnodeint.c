@@ -15,41 +15,39 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	dlistint_t *cur = NULL;
 	size_t list_node_count;
 
-	if (head)
+	if (head != NULL && *head != NULL)
 	{
-		if (*head)
+		cur = *head;
+		/* delete first node in the list */
+		if (index == 0)
 		{
-			cur = *head;
-			/* delete first node in the list */
-			if (index == 0)
+			*head = cur->next;
+			cur->next->prev = cur->prev;
+		}
+		else
+		{
+			/* Get total length of the list */
+			list_node_count = dlistint_len(*head);
+
+			/* delete the last node in the list */
+			if (index == list_node_count - 1)
 			{
-				*head = cur->next;
+				while (cur->next != NULL)
+					cur = cur->next;
+				cur->prev->next = cur->next;
+			}
+			else if (index < list_node_count - 1)
+			{
+				/* delete node in the middle of the list */
+				cur = get_dnodeint_at_index(*head, index);
+				if (cur == NULL)
+					return (-1);
+				cur->prev->next = cur->next;
 				cur->next->prev = cur->prev;
 			}
-			else
-			{
-				/* Get total length of the list */
-				list_node_count = dlistint_len(*head);
-
-				/* delete the last node in the list */
-				if (index == list_node_count - 1)
-				{
-					while (cur->next != NULL)
-						cur = cur->next;
-					cur->prev->next = cur->next;
-				}
-				else if (index < list_node_count - 1)
-				{
-					/* delete node in the middle of the list */
-					cur = get_dnodeint_at_index(*head, index);
-					cur->prev->next = cur->next;
-					cur->next->prev = cur->prev;
-				}
-			}
-			free(cur);
-			return (1);
 		}
-		return (-1);
+		free(cur);
+		return (1);
 	}
 	return (-1);
 }
