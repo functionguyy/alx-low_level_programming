@@ -18,7 +18,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	if (head != NULL && *head != NULL)
 	{
 		cur = *head;
-		/* delete first node in the list */
+		/* given index is first node in the list */
 		if (index == 0)
 		{
 			*head = cur->next;
@@ -29,13 +29,14 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 			/* Get total length of the list */
 			list_node_count = dlistint_len(*head);
 
-			/* if index is out of list range */
+			/* Given index is out of list range */
 			if (index >= list_node_count)
 				return (-1);
 
-			else if (index <= list_node_count - 1)
+			/* Given index is within list range */
+			if (index <= list_node_count - 1)
 			{
-				/* delete node in the middle of the list */
+				/* Get node address at given index and delete it */
 				cur = get_dnodeint_at_index(*head, index);
 				cur->prev->next = cur->next;
 				if (cur->next != NULL)
