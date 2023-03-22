@@ -13,7 +13,7 @@
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
 	dlistint_t *cur = NULL;
-	size_t list_node_count;
+	size_t list_node_count = 0;
 
 	if (head != NULL && *head != NULL)
 	{
@@ -29,21 +29,17 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 			/* Get total length of the list */
 			list_node_count = dlistint_len(*head);
 
-			/* delete the last node in the list */
-			if (index == list_node_count - 1)
-			{
-				while (cur->next != NULL)
-					cur = cur->next;
-				cur->prev->next = cur->next;
-			}
-			else if (index < list_node_count - 1)
+			/* if index is out of list range */
+			if (index >= list_node_count)
+				return (-1);
+
+			else if (index <= list_node_count - 1)
 			{
 				/* delete node in the middle of the list */
 				cur = get_dnodeint_at_index(*head, index);
-				if (cur == NULL)
-					return (-1);
 				cur->prev->next = cur->next;
-				cur->next->prev = cur->prev;
+				if (cur->next != NULL)
+					cur->next->prev = cur->prev;
 			}
 		}
 		free(cur);
