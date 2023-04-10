@@ -12,6 +12,7 @@
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *table;
+	unsigned long int arr_idx;
 
 	table = malloc(sizeof(hash_table_t));
 	if (table == NULL)
@@ -25,6 +26,15 @@ hash_table_t *hash_table_create(unsigned long int size)
 	{
 		free(table);
 		return (NULL);
+	}
+	
+	/* *
+	 * initialize each cell in the table array to be the head of an empty 
+	 * hash_node_t singly linked list.
+	 */
+	for(arr_idx = 0; arr_idx < table->size; arr_idx++)
+	{
+		table->array[arr_idx] = NULL;
 	}
 
 	return (table);
