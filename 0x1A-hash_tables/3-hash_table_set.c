@@ -20,29 +20,38 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (ht == NULL || key == NULL)
 		return (0);
 
-	ht_array_idx = key_index((const unsigned char *)key, ht->size);
-	head = ht->array[ht_array_idx];
-
-	new_node = add_node(&head, key, value);
+	new_node = create_node(key, value);
 	if (new_node == NULL)
 		return (0);
 
-	printf("%p", (void *)new_node);
+	ht_array_idx = key_index((const unsigned char *)key, ht->size);
+	head = ht->array[ht_array_idx];
+
+
+	if (head == NULL)
+	{
+		head = new_node;
+	}
+	else
+	{
+		new_node->next = head;
+		head = new_node;
+	}
 
 	return (1);
 }
 
 /**
- * add_node - function adds a new node t beginning of a hash_node_t linked list
- * @head: pointer to pointer to the last added node
+ * create_node - function creates a new node of a hash_node_t linked list
  * @key: the value for hash_node_t key member
  * @value: the value for hash_node_t value member
  *
  * Return: the address of the new node or NULL if it fails
  */
-hash_node_t *add_node(hash_node_t **head, const char *key, const char *value)
+hash_node_t *create_node(const char *key, const char *value)
 {
-	hash_node_t *new_node;
+	hash_node_t *new_node = NULL;
+	char *new_key, *new_value;
 
 	new_node = malloc(sizeof(hash_node_t));
 	if (new_node == NULL)
@@ -50,11 +59,16 @@ hash_node_t *add_node(hash_node_t **head, const char *key, const char *value)
 
 	if (key)
 	{
-		new_node->key = strdup(key);
-		new_node->value = strdup(value);
+		new_key = strdup(key);
+		if (new_key == NULL)
+			return (NULL);
+		new_value = strdup(value);
+		if (new_value == NULL)
+			return (NULL);
+		new_node->key = new_key;
+		new_node->value = new_value;
+		new_node->next = NULL;
 	}
-	new_node->next = *head;
-	*head = new_node;
 
-	return (*head);
+	return (new_node);
 }
