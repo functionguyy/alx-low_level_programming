@@ -27,19 +27,21 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	ht_array_idx = key_index((const unsigned char *)key, ht->size);
 	head = ht->array[ht_array_idx];
 
-
+	/* check if the array cell is empty */
 	if (head == NULL)
 	{
 		ht->array[ht_array_idx] = new_node;
 	}
 	else
 	{
+		/* check if the key already exit */
 		if (strcmp(head->key, key) == 0)
 		{
 			strcpy(ht->array[ht_array_idx]->value, new_node->value);
 		}
 		else
 		{
+			/* if collision occurs add new node to beginning linked */
 			new_node->next = ht->array[ht_array_idx];
 			ht->array[ht_array_idx] = new_node;
 		}
