@@ -30,12 +30,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (head == NULL)
 	{
-		head = new_node;
+		ht->array[ht_array_idx] = new_node;
 	}
 	else
 	{
-		new_node->next = head;
-		head = new_node;
+		if (strcmp(head->key, key) == 0)
+		{
+			strcpy(ht->array[ht_array_idx]->value, new_node->value);
+		}
+		else if (head->next == NULL)
+		{
+			new_node->next = ht->array[ht_array_idx];
+			ht->array[ht_array_idx] = new_node;
+		}
 	}
 
 	return (1);
