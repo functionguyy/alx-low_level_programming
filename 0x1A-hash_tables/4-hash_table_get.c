@@ -17,12 +17,14 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 
 	if (ht)
 	{
+		/* get hash table array index for key */
 		ht_array_idx = key_index((const unsigned char *)key, ht->size);
 
 		head = ht->array[ht_array_idx];
 
 		if (head)
 		{
+			/* search linked list attached to hash table array cell at index*/
 			while (head != NULL)
 			{
 				cur_node = head;
