@@ -21,22 +21,19 @@ void hash_table_print(const hash_table_t *ht)
 		for (i = 0; i < ht->size; i++)
 		{
 			head = ht->array[i];
-			if (head)
+			while (head != NULL)
 			{
-				while (head != NULL)
-				{
-					cur_node = head;
-					head = cur_node->next;
+				cur_node = head;
+				head = cur_node->next;
 
 					/* signify first non-null hash table array cell */
-					if (flag == 0)
-						flag = 1;
-					else
-						printf(",");
-					printf("'%s': '%s'", cur_node->key, cur_node->value);
-				}
+				if (flag == 0)
+					flag = 1;
+				else
+					printf(",");
+				printf("'%s': '%s'", cur_node->key, cur_node->value);
 			}
 		}
-		printf("}\n");
 	}
+		printf("}\n");
 }
