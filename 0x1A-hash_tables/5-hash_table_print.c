@@ -10,7 +10,7 @@
  */
 void hash_table_print(const hash_table_t *ht)
 {
-	hash_node_t *cur_node, *head;
+	hash_node_t *head;
 	unsigned long int i;
 	int flag;
 
@@ -21,17 +21,17 @@ void hash_table_print(const hash_table_t *ht)
 		for (i = 0; i < ht->size; i++)
 		{
 			head = ht->array[i];
+			if (head == NULL)
+				continue;
 			while (head != NULL)
 			{
-				cur_node = head;
-				head = cur_node->next;
-
-					/* signify first non-null hash table array cell */
+				/* signify first non-null hash table array cell */
 				if (flag == 0)
 					flag = 1;
 				else
 					printf(",");
-				printf("'%s': '%s'", cur_node->key, cur_node->value);
+				printf("'%s': '%s'", head->key, head->value);
+				head = head->next;
 			}
 		}
 	}
