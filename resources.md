@@ -1,6 +1,9 @@
 # RESOURCES
 These links link to webpages that contain useful information related to their
 respective subheadings
+## Data structures
+- [Data structures & Algorithm Basic Concepts](https://www.tutorialspoint.com/data_structures_algorithms/data_structures_basics.htm)
+- [Data structures](https://www.geeksforgeeks.org/data-structures/)
 ## LD_PRELOAD TRICK
 - [What is the LD_PRELOAD trick](https://stackoverflow.com/questions/426230/what-is-the-ld-preload-trick)
 - [Shared libraries](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html)
