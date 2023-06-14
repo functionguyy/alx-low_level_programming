@@ -31,6 +31,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	{
 		free(mem_alloc->owner);
 		free(mem_alloc->name);
+		free(mem_alloc);
 		return (NULL);
 	}
 
