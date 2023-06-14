@@ -23,15 +23,17 @@ dog_t *new_dog(char *name, float age, char *owner)
 	}
 
 	mem_alloc->name = strdup(name);
+	if (mem_alloc->name == NULL)
+	{
+		free(mem_alloc);
+		return (NULL);
+	}
 	mem_alloc->age = age;
 	mem_alloc->owner = strdup(owner);
-
-
-	if (mem_alloc->owner == NULL || mem_alloc->name == NULL)
+	if (mem_alloc->owner == NULL)
 	{
-		free(mem_alloc->owner);
-		free(mem_alloc->name);
 		free(mem_alloc);
+		free(mem_alloc->name);
 		return (NULL);
 	}
 
