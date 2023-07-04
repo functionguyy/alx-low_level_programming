@@ -13,7 +13,6 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog_struct;
-	char *dog_name, *dog_owner;
 	unsigned int len_str1, len_str2;
 
 
@@ -48,5 +47,5 @@ dog_t *new_dog(char *name, float age, char *owner)
 	dog_struct->age = age;
 
 
-	return (mem_alloc);
+	return (dog_struct);
 }
