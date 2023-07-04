@@ -12,32 +12,40 @@
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *mem_alloc;
+	dog_t *dog_struct;
 	char *dog_name, *dog_owner;
+	unsigned int len_str1, len_str2;
 
 
 
-	mem_alloc = malloc(sizeof(dog_t));
-	if (mem_alloc == NULL)
+
+	dog_struct = malloc(sizeof(dog_t));
+	if (dog_struct == NULL)
 		return (NULL);
 
-	dog_name = strdup(name);
-	if (dog_name == NULL)
+	len_str1 = strlen(name);
+	len_str2 = strlen(owner);
+
+
+
+	dog_struct->name = malloc(sizeof(char) * (len_str1 + 1));
+	if (dog_struct->name == NULL)
 	{
-		free(mem_alloc);
+		free(dog_struct);
 		return (NULL);
 	}
-	dog_owner = strdup(owner);
-	if (dog_owner == NULL)
+
+	dog_struct->owner = malloc(sizeof(char) * (len_str2 + 1));
+	if (dog_struct->owner == NULL)
 	{
-		free(dog_name);
-		free(mem_alloc);
+		free(dog_struct->name);
+		free(dog_struct);
 		return (NULL);
 	}
 
-	mem_alloc->name = dog_name;
-	mem_alloc->age = age;
-	mem_alloc->owner = dog_owner;
+	strcpy(dog_struct->name, name);
+	strcpy(dog_struct->owner, owner);
+	dog_struct->age = age;
 
 
 	return (mem_alloc);
