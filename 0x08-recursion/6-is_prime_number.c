@@ -1,23 +1,22 @@
 #include "main.h"
 /**
- * _sqrt_checker - function that performs repeated subtraction of consecutive
- * odd numbers from num till the result is either 0 or less that zero
+ * _prime_checker - function that performs a primality test on an integer
  * @num: a whole number
- * @odd: a positive odd number
+ * @d: divisor number
  *
- * Description: The function count how many steps it takes for the result of
- * the subtraction reach 0 or less than zero (which ever comes first)
- * Return: the number of subtraction steps or zero
+ * Description: The function preforms repeated division of consecutive numbers
+ * from d till num is either divisble by d or equal to d
+ * Return: 1 if input integer is a prime number or 0 otherwise
  */
 
-int _sqrt_checker(int num, int odd)
+int _prime_checker(int num, int d)
 {
-	if (num < 0)
-		return (-1);
-	else if (num == 0)
+	if (num == d)
+		return (1);
+	else if (num % d == 0)
 		return (0);
 	else
-		return (1 + _sqrt_checker((num - odd), (odd + 2)));
+		return (_prime_checker(num, (d + 1)));
 }
 
 /**
@@ -29,21 +28,14 @@ int _sqrt_checker(int num, int odd)
 
 int is_prime_number(int n)
 {
-	int odd, root, f;
+	int r_val;
 
-	odd = 1;
-	f = 2;
-	root = _sqrt_checker(n, odd);
-
-	if (root * root == n || n < 2)
+	/* prime number cannot be less than 2 */
+	if (n < 2)
 		return (0);
 
-	while (f < n)
-	{
-		if (n % f == 0)
-			return (0);
-		f++;
-	}
+	/* perform primality test */
+	r_val = _prime_checker(n, 2);
 
-	return (1);
+	return (r_val);
 }
