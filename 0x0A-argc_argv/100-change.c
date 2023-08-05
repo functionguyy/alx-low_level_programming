@@ -10,20 +10,26 @@
 
 int change_calc(int cent)
 {
-	if (cent == 0)
-		return (cent);
-	else if (cent >= 25)
-		cent = cent - 25;
-	else if (cent < 25 && cent >= 10)
-		cent = cent - 10;
-	else if (cent < 10 && cent >= 5)
-		cent = cent - 5;
-	else if (cent < 5 && cent >= 2)
-		cent = cent - 2;
-	else
-		cent = cent - 1;
+	int n;
 
-	return (1 + change_calc(cent));
+	n = 0;
+
+	while (cent)
+	{
+		if (cent >= 25)
+			cent = cent - 25;
+		else if (cent < 25 && cent >= 10)
+			cent = cent - 10;
+		else if (cent < 10 && cent >= 5)
+			cent = cent - 5;
+		else if (cent < 5 && cent >= 2)
+			cent = cent - 2;
+		else
+			cent = cent - 1;
+		n++;
+	}
+
+	return (n);
 }
 
 /**
@@ -40,15 +46,13 @@ int main(int argc, char *argv[])
 {
 	int arg;
 
-	if (argc > 2)
+	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
 
 	arg = atoi(argv[1]);
-
-	printf("%d\n", arg);
 
 	if (arg < 0)
 		arg = 0;
