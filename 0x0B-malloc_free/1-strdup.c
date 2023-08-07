@@ -38,7 +38,7 @@ char *_strdup(char *str)
 
 
 	/* Use length of string to request memory allocation */
-	newStrMemory = malloc(sizeof(char) * strLength + 1);
+	newStrMemory = malloc(sizeof(char) * strLength);
 
 
 	/* confirm that memory allocation was successful */
@@ -52,6 +52,9 @@ char *_strdup(char *str)
 		newStrMemory[loopIndex] = str[loopIndex];
 		loopIndex++;
 	}
+
+	/* add new string's terminating null byte */
+	newStrMemory[strLength] = '\0';
 
 
 	/* return pointer to the new allocated memory */
