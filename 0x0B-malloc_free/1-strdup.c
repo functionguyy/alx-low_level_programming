@@ -42,7 +42,7 @@ char *_strdup(char *str)
 
 
 	/* confirm that memory allocation was successful */
-	if (newStrMemory == NULL && errno == ENOMEM)
+	if (newStrMemory == NULL || errno == ENOMEM)
 		return (NULL);
 
 
