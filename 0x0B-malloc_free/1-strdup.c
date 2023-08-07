@@ -27,18 +27,16 @@ char *_strdup(char *str)
 	newStrMemory = NULL;
 	errno = 0;
 
-
 	/* Confirm value in str is not NULL */
 	if (str == NULL)
 		return (NULL);
-
 
 	/* Get the length of string pointed to by str */
 	strLength = strlen(str);
 
 
 	/* Use length of string to request memory allocation */
-	newStrMemory = malloc(sizeof(char) * strLength);
+	newStrMemory = malloc(sizeof(char) * strLength + 1);
 
 
 	/* confirm that memory allocation was successful */
@@ -55,7 +53,6 @@ char *_strdup(char *str)
 
 	/* add new string's terminating null byte */
 	newStrMemory[strLength] = '\0';
-
 
 	/* return pointer to the new allocated memory */
 	return (newStrMemory);
