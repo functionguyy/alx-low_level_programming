@@ -14,7 +14,7 @@ char *create_array(unsigned int size, char c)
 {
 	/* Declare variables */
 	char *mem_alloc;
-	int loop_idx;
+	unsigned int loop_idx;
 
 	/* initialize the variables */
 	mem_alloc = NULL;
@@ -28,7 +28,7 @@ char *create_array(unsigned int size, char c)
 
 
 	/* Assign malloc allocated memory to pointer variable */
-	mem_alloc = malloc(sizof(char) * size);
+	mem_alloc = malloc(sizeof(char) * size);
 
 
 	/* check that there was no error in memory allocation */
