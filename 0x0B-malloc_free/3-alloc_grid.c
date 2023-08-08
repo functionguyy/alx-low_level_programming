@@ -28,6 +28,29 @@ void initializer(int **matrix, int height, int width)
 
 }
 
+/**
+ * freeMultiDimArr - function frees malloc memory allocation for row in a 2D
+ * array of integers
+ * @matrix: 2D array of integer
+ * @index: number of rows allocated
+ *
+ */
+void freeMultiDimArr(int **matrix, int index)
+{
+	if (index > 0)
+	{
+		while (index >= 0)
+		{
+			free(matrix[index]);
+			index--;
+		}
+	}
+	else
+		free(matrix[index]);
+
+	free(matrix);
+}
+
 
 /**
  * alloc_grid - function that returns a pointer to a 2D array of integers
@@ -67,7 +90,10 @@ int **alloc_grid(int width, int height)
 		multiDimArr[loopIndex] = malloc(sizeof(int) * width);
 		/* confirm memory allocation */
 		if (multiDimArr[loopIndex] == NULL)
+		{
+			freeMultiDimArr(multiDimArr, loopIndex);
 			return (NULL);
+		}
 
 		loopIndex++;
 	}
