@@ -36,22 +36,19 @@ void copy(char *memory, int tLen, char *st1, char *st2, int s1Len, int s2Len)
 	while (loopIndex < tLen)
 	{
 		if (strSwitch == false && str1Count < s1Len)
-		{
 			memory[loopIndex] = st1[str1Count];
-			str1Count++;
-		}
 
 		if (str1Count == s1Len && strSwitch == false)
-		{
 			strSwitch = true;
-			loopIndex++;
-		}
 
 		if (strSwitch == true && str2Count < s2Len)
-		{
 			memory[loopIndex] = st2[str2Count];
+
+		if (strSwitch == false)
+			str1Count++;
+		else
 			str2Count++;
-		}
+
 		loopIndex++;
 	}
 
@@ -84,6 +81,7 @@ char *str_concat(char *s1, char *s2)
 	 */
 	if (s1 == NULL)
 		s1 = "";
+
 	if (s2 == NULL)
 		s2 = "";
 
