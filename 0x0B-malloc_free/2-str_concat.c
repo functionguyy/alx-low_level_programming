@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <errno.h>
 /**
  * copy - function that copies the content of two strings into the same memory
  * space
@@ -73,7 +72,6 @@ char *str_concat(char *s1, char *s2)
 
 	/* initialize variables */
 	newStrMemory = NULL;
-	errno = 0;
 
 	/**
 	 * confirm NULL is passed as value for s1 or s2 and
@@ -94,7 +92,7 @@ char *str_concat(char *s1, char *s2)
 	newStrMemory = malloc(sizeof(char) * totalLen + 1);
 
 	/* confirm that memory allocation failed */
-	if (errno == ENOMEM)
+	if (newStrMemory == NULL)
 		return (NULL);
 
 
