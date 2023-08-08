@@ -63,7 +63,7 @@ char *argstostr(int ac, char **av)
 	}
 
 	/* use total length of the strings to request memory allocation */
-	newStrMemory = malloc(sizeof(char) * totalLen);
+	newStrMemory = malloc(sizeof(char) * totalLen + 1);
 
 	/* confirm the memory allocation status */
 	if (newStrMemory == NULL)
