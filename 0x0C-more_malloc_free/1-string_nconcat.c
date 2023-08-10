@@ -38,20 +38,33 @@ int _strlen(char *s)
 char *_strncat(char *dest, char *src, int n)
 {
 	/* declare variables */
-	int destStrByteCount, index;
+	int destStrByteCount, index, srcStrByteCount;
 
 	/* initialize variables */
 	destStrByteCount = _strlen(dest);
+	srcStrByteCount = _strlen(src);
 	index = 0;
 
 	/* concat string in src to string in dest */
-	while (index < n && *(src + index) != '\0')
+	if (n >= srcStrByteCount)
 	{
-		*(dest + destStrByteCount) = *(src + index);
-		destStrByteCount++;
-		index++;
+		while (index < srcStrByteCount)
+		{
+			*(dest + destStrByteCount) = *(src + index);
+			destStrByteCount++;
+			index++;
+		}
 	}
 
+	if (n < srcStrByteCount)
+	{
+		while (index < n)
+		{
+			*(dest + destStrByteCount) = *(src + index);
+			destStrByteCount++;
+			index++;
+		}
+	}
 	/* null terminate the concatenated string */
 	*(dest + destStrByteCount) = '\0';
 
@@ -102,7 +115,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	char *newStrMemory;
 
 	/* initialize variables */
-	strOneByteCount = _strlen(s1);
+	strOneByteCount = 0;
 	memoryByteSize = 0;
 	newStrMemory = NULL;
 
@@ -113,6 +126,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s2 = "";
 
 	/* total byte count of required buffer */
+	strOneByteCount = _strlen(s1);
 	memoryByteSize = strOneByteCount + n + 1;
 
 	/* use total byte count of required buffer to request memory allocation */
