@@ -1,11 +1,13 @@
 #include "main.h"
 #include <stdlib.h>
 /**
+ * _memset - function that fills the first memByte bytes of the memory area
+ * pointed to by mem with the constant byte num
+ * @mem: pointer to a malloc allocated memory area
+ * @num: value to be set in memByte of memory area pointed to by mem
+ * @memByte: positive integer
  *
- *
- *
- *
- *
+ * Return: mem
  */
 void *_memset(void *mem, unsigned int num, unsigned int memByte)
 {
