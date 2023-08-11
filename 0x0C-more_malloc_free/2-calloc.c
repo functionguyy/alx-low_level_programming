@@ -1,6 +1,32 @@
 #include "main.h"
 #include <stdlib.h>
 /**
+ *
+ *
+ *
+ *
+ *
+ */
+void *_memset(void *mem, unsigned int num, unsigned int memByte)
+{
+	/* decalre variable */
+	unsigned char *bytePtr;
+
+	/* initialize variable */
+	bytePtr = mem;
+
+	/* set memory bytes */
+	while (memByte > 0)
+	{
+		*bytePtr = (unsigned char)num;
+		bytePtr++;
+		memByte--;
+	}
+
+	/* return to the allocated memory space that passed */
+	return (mem);
+}
+/**
  * _calloc - function that allocates memory for an array, using malloc
  * @nmemb: number of memory bytes
  * @size: size of element byte
@@ -25,6 +51,9 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 	/* use total memeory byte size to request memory allocation */
 	memory = malloc_checked(memoryByteSize);
+
+	/* set memory to zero */
+	memory = _memset(memory, 0, memoryByteSize);
 
 	/* return pointer to the allocated memory */
 	return (memory);
