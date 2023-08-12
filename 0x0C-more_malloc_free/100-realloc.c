@@ -23,7 +23,8 @@ void *_memcpy(void *newMemoryPtr, void *oldMemoryPtr, size_t n)
 	/* copy n bytes from oldMemory area to newMemory area */
 	while (index < n)
 	{
-		newMemPtr[index] = oldMemPtr[index];
+		*newMemPtr = *(oldMemPtr + index);
+		newMemPtr++;
 		index++;
 	}
 
