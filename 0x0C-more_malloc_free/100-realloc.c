@@ -42,7 +42,7 @@ void *_memcpy(void *newMemoryPtr, void *oldMemoryPtr, size_t n)
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	/* declare variables */
-	void *oldMemory, *newMemory;
+	void *newMemory;
 
 	/* initialize variables */
 	newMemory = NULL;
