@@ -26,18 +26,12 @@ int *array_range(int min, int max)
 	if (min > max)
 		return (NULL);
 
-	/* printf("min number: %d\n", minNum); */
-
 	/* get the total count of values between min(included) and max(included) */
 	while (minNum < max)
 	{
 		minNum++;
 		byteCount++;
 	}
-	/* printf("max number: %d\n", minNum); */
-	/* printf("count: %d\n", byteCount); */
-
-
 
 	/* request memory allocation */
 	arrayOfInt = _calloc(byteCount, sizeof(int));
