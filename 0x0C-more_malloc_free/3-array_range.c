@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 /**
  * array_range - function that creates an array of integers
  * @min: min value to be stored in the array
@@ -33,7 +32,6 @@ int *array_range(int min, int max)
 		byteCount++;
 	}
 
-	printf("%d\n", byteCount);
 
 
 	/* request memory allocation */
@@ -46,7 +44,6 @@ int *array_range(int min, int max)
 		min++;
 		arrayIndex++;
 	}
-	printf("%d\n", arrayIndex);
 
 	/* return pointer to the allocated memory space */
 	return (arrayOfInt);
