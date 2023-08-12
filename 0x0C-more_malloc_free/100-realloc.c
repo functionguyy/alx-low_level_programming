@@ -46,7 +46,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	/* initialize variables */
 	newMemory = NULL;
-	oldMemory = ptr;
 
 
 	/* confirm new_size not equal to old_size and ptr not equal to NULL */
@@ -66,20 +65,19 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	/* confirm ptr not equal to NULL */
 	if (ptr == NULL)
 	{
-		free(oldMemory);
 		ptr = newMemory;
 		return (ptr);
 	}
 
 
 	/* copy bytes in old_size memory area to new_size memory area */
-	ptr = _memcpy(newMemory, oldMemory, old_size);
+	newMemory = _memcpy(newMemory, ptr, old_size);
 
 	/* release the previous ptr memory area */
-	free(oldMemory);
+	free(ptr);
 
 	/* return pointer to allocated memory */
-	return (ptr);
+	return (newMemory);
 }
 /**
  * malloc_checked - function that allocates memory using malloc
