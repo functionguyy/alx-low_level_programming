@@ -12,7 +12,7 @@
 void *_memcpy(void *newMemoryPtr, void *oldMemoryPtr, size_t n)
 {
 	/* declare variables */
-	size_t *oldMemPtr, *newMemPtr;
+	char *oldMemPtr, *newMemPtr;
 	size_t index;
 
 	/* initialize variables */
@@ -23,8 +23,7 @@ void *_memcpy(void *newMemoryPtr, void *oldMemoryPtr, size_t n)
 	/* copy n bytes from oldMemory area to newMemory area */
 	while (index < n)
 	{
-		*newMemPtr = *(oldMemPtr + index);
-		newMemPtr++;
+		*(newMemPtr + index) = *(oldMemPtr + index);
 		index++;
 	}
 
