@@ -1,4 +1,5 @@
 #include <unistd.h>
+#define FILENAME __BASE_FILE__
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to prints
@@ -41,7 +42,7 @@ int main(void)
 	char *name;
 
 	/* initialize variable with a common predefined macro */
-	name = __BASE_FILE__;
+	name = FILENAME;
 
 	/* write macro expansion output to stdout */
 	_puts(name);
