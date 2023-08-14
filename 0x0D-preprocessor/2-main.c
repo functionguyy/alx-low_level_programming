@@ -1,5 +1,5 @@
 #include <unistd.h>
-#define FILENAME __BASE_FILE__
+#include "2-main.h"
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to prints
