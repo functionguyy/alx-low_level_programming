@@ -1,6 +1,32 @@
 #include "dog.h"
 #include <stdlib.h>
-#include <string.h>
+/**
+ * _strlen - calculate the length of a string
+ * @s: pointer to string whose length should be calculated
+ *
+ * Description: function calulates the length of the string pointed to by s,
+ * exculidng the terminating null byte
+ * Return: length of the string.
+ */
+int _strlen(char *s)
+{
+	/* declare variable */
+	int strByteCount;
+
+	/* initialize variable */
+	strByteCount = 0;
+
+	/* count number of bytes in string */
+	while (*s != '\0')
+	{
+		strByteCount++;
+		s++;
+	}
+
+	/* return byte count */
+	return (strByteCount);
+}
+
 /**
  * new_dog - Function that creates a new dog struct data
  * @name:  value for the name member of the struct
@@ -12,40 +38,44 @@
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *dog_struct;
-	unsigned int len_str1, len_str2;
+	/* declare variables */
+	dog_t *dogStruct;
+
+	/* initialize variable */
+	dogStruct = NULL;
 
 
 
 
-	dog_struct = malloc(sizeof(dog_t));
-	if (dog_struct == NULL)
+	/* allocte memory for the struct */
+	dogStruct = malloc(sizeof(dog_t));
+	if (dogStruct == NULL)
 		return (NULL);
 
-	len_str1 = strlen(name);
-	len_str2 = strlen(owner);
 
 
-
-	dog_struct->name = malloc(sizeof(char) * (len_str1 + 1));
-	if (dog_struct->name == NULL)
+	/* allocate memory for the  members of the struct */
+	dogStruct->name = malloc(sizeof(char) * _strlen(name) + 1);
+	if (dogStruct->name == NULL)
 	{
-		free(dog_struct);
+		free(dogStruct);
 		return (NULL);
 	}
 
-	dog_struct->owner = malloc(sizeof(char) * (len_str2 + 1));
-	if (dog_struct->owner == NULL)
+	dogStruct->owner = malloc(sizeof(char) * _strlen(owner) + 1);
+	if (dogStruct->owner == NULL)
 	{
-		free(dog_struct->name);
-		free(dog_struct);
+		free(dogStruct->name);
+		free(dogStruct);
 		return (NULL);
 	}
 
-	strcpy(dog_struct->name, name);
-	strcpy(dog_struct->owner, owner);
-	dog_struct->age = age;
+	/* assigne values to the members of the struct */
+	strcpy(dogStruct->name, name);
+	strcpy(dogStruct->owner, owner);
+	dogStruct->age = age;
 
 
-	return (dog_struct);
+	/* return pointer to the created struct */
+	return (dogStruct);
 }
