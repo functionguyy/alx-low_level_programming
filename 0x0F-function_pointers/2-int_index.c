@@ -20,7 +20,7 @@ int int_index(int *array, int size, int (*cmp)(int))
 
 	/* confirm pointer arguments are not NULL */
 	if (array == NULL || cmp == NULL)
-		exit(EXIT_FAILURE);
+		return (matchIndex);
 
 	/* confirm size is not zero or negative */
 	if (size <= 0)
