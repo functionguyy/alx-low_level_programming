@@ -17,9 +17,6 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	va_start(ap, n);
 	idx = 0;
 
-	/* confirm non-null and non-zero paramter */
-	if (n == 0)
-		return;
 
 	/* print all the variadic parameters passed */
 	while (idx < n)
