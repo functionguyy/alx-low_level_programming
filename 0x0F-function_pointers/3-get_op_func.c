@@ -75,20 +75,20 @@ int (*get_op_func(char *s))(int, int)
 		{"%", op_mod},
 		{NULL, NULL}
 	};
-	int loopIndex;
+	int i;
 
 	/* initialize variable */
-	loopIndex = 0;
+	i = 0;
 
 	/* get function based on operator passed */
-	while (ops[loopIndex].op != NULL)
+	while (ops[i].op != NULL)
 	{
-		if (_strcmp(ops[loopIndex].op, s) == 0 && _strlen(s) < 2)
+		if (_strcmp(ops[i].op, s) == 0 && _strlen(s) < 2)
 		{
-			return (ops[loopIndex].f);
+			return (ops[i].f);
 		}
-		loopIndex++;
+		i++;
 	}
 
-	return (ops[loopIndex].f);
+	return (ops[i].f);
 }
