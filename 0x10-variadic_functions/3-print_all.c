@@ -1,48 +1,77 @@
 #include "variadic_functions.h"
 #include <stdio.h>
 #include <stdarg.h>
-#include <string.h>
 /**
- * printChar - print matching character
- * @arg: argument list
+ * printMatch - functions print the variadic argument that matches the format
+ * character
+ * @s: pointer to format character
+ * @arg: variadic argument;
  */
-void printChar(va_list arg)
+void printMatch(const char *s, va_list arg)
 {
-	printf("%c", va_arg(arg, int));
-}
-/**
- * printInt - print matching integer
- * @arg: argument list
- */
-void printInt(va_list arg)
-{
-	printf("%d", va_arg(arg, int));
-}
-/**
- * printFloat - printing floating
- * @arg: argument list
- */
-void printFloat(va_list arg)
-{
-	printf("%g", va_arg(arg, double));
-}
-/**
- * printStr - print string
- * @arg: argument list
- */
-void printStr(va_list arg)
-{
+	/* declare variables */
+	char *arr[] = {"c", "i", "f", "s"};
+
+	int i;
 	char *str;
 
+
+	i = 0;
 	str = NULL;
 
-	str = va_arg(arg, char *);
-	if (str != NULL)
+
+	while (*(arr[i]) != *s)
 	{
-		printf("%s", str);
-		return;
+		i++;
 	}
-	printf("(nil)");
+
+	switch (*(arr[i]))
+	{
+		case 'c':
+			printf("%c", va_arg(arg, int));
+			break;
+		case 'i':
+			printf("%d", va_arg(arg, int));
+			break;
+		case 'f':
+			printf("%f", va_arg(arg, double));
+			break;
+		case 's':
+			str = va_arg(arg, char *);
+			if (str != NULL)
+			{
+				printf("%s", str);
+				break;
+			}
+			printf("(nil)");
+			break;
+	}
+}
+/**
+ * printComma - function prints a comman based on the signal and character
+ * passed to it.
+ * @sig: integer number
+ * @c: character constant
+ *
+ * Description: if sig is 1 and character is not a null byte the function
+ * prints a comma
+ */
+void printComma(int sig, char c)
+{
+	switch (sig)
+	{
+		case 1:
+			switch (c)
+			{
+				case '\0':
+					return;
+				default:
+					printf(", ");
+			}
+		case 0:
+			return;
+
+	}
 }
 /**
  * print_all - function that prints anything
@@ -51,31 +80,47 @@ void printStr(va_list arg)
 void print_all(const char * const format, ...)
 {
 	va_list ap;
-	int idx, arrIdx;
-	fStr_t arr[] = {
-		{"c", printChar},
-		{"i", printInt},
-		{"f", printFloat},
-		{"s", printStr},
-		{NULL, NULL}
-	};
+	int idx, foundMatch;
 
 	idx = 0;
-	arrIdx = 0;
+	foundMatch = 0;
 	va_start(ap, format);
+
+	if (format == NULL || *format == '\0')
+		return;
 
 	while (*(format + idx) != '\0')
 	{
-		arrIdx = 0;
-		while (*(arr[arrIdx].fmt) != *(format + idx))
-			arrIdx++;
-		arr[arrIdx].f(ap);
+		foundMatch = 0;
+		switch (*(format + idx))
+		{
+			case 'c':
+				foundMatch = 1;
+				printMatch((format + idx), ap);
+				break;
+			case 'i':
+				foundMatch = 1;
+				printMatch((format + idx), ap);
+				break;
+			case 'f':
+				foundMatch = 1;
+				printMatch((format + idx), ap);
+				break;
+			case 's':
+				foundMatch = 1;
+				printMatch((format + idx), ap);
+				break;
+			default:
+				idx++;
+				continue;
+		}
 		idx++;
-		if (*(format + idx) != '\0')
-			printf(", ");
+		printComma(foundMatch, *(format + idx));
 	}
 
 	putchar('\n');
 }
+
+
 
 
