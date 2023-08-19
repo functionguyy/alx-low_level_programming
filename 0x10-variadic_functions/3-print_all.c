@@ -3,76 +3,46 @@
 #include <stdarg.h>
 #include <string.h>
 /**
- * _strlen - function return the numbers of character byte in a string
- * @s: pointer to the string whose character byte should be counted
- *
- * Return: number of character byte in the string
+ * printChar - print matching character
+ * @arg: argument list
  */
-int _strlen(const char *s)
+void printChar(va_list arg)
 {
-	/* declare variables */
-	int strByteCount;
-
-	/* initialize variable */
-	strByteCount = 0;
-
-	/* count number of character byte in string */
-	while (*(s + strByteCount) != '\0')
-		strByteCount++;
-
-	/* return number of character bytes in string */
-	return (strByteCount);
+	printf("%c", va_arg(arg, int));
 }
 /**
- * printIfMatch - function checks prints the value that matches the characters
- * in a format string
- * @fmt: pointer to format string
- * @arg: argument list of parameters to printed for each respective matching
- * characters in fmt
- * @len: the length of fmt
- *
+ * printInt - print matching integer
+ * @arg: argument list
  */
-void printIfMatch(const char *fmt, va_list arg, int len)
+void printInt(va_list arg)
 {
-	/* declare variables */
-	int idx;
+	printf("%d", va_arg(arg, int));
+}
+/**
+ * printFloat - printing floating
+ * @arg: argument list
+ */
+void printFloat(va_list arg)
+{
+	printf("%g", va_arg(arg, double));
+}
+/**
+ * printStr - print string
+ * @arg: argument list
+ */
+void printStr(va_list arg)
+{
 	char *str;
 
-	/* initialize variable */
-	idx = 0;
 	str = NULL;
 
-	/* confirm character match */
-	while (*(fmt + idx) != '\0')
+	str = va_arg(arg, char *);
+	if (str != NULL)
 	{
-		switch (*(fmt + idx))
-		{
-			case 'c':
-				printf("%c", va_arg(arg, int));
-				break;
-			case 'i':
-				printf("%d", va_arg(arg, int));
-				break;
-			case 'f':
-				printf("%g", va_arg(arg, double));
-				break;
-			case 's':
-				str = va_arg(arg, char *);
-				if (str != NULL)
-				{
-					printf("%s", str);
-					break;
-				}
-				printf("(nil)");
-				break;
-			default:
-				idx++;
-				continue;
-		}
-		if (idx != len - 1)
-			printf(", ");
-		idx++;
+		printf("%s", str);
+		return;
 	}
+	printf("(nil)");
 }
 /**
  * print_all - function that prints anything
@@ -80,17 +50,32 @@ void printIfMatch(const char *fmt, va_list arg, int len)
  */
 void print_all(const char * const format, ...)
 {
-	/* declare variables */
 	va_list ap;
-	int strByteCount;
+	int idx, arrIdx;
+	fStr_t arr[] = {
+		{"c", printChar},
+		{"i", printInt},
+		{"f", printFloat},
+		{"s", printStr},
+		{NULL, NULL}
+	};
 
-	/* initialize variables */
+	idx = 0;
+	arrIdx = 0;
 	va_start(ap, format);
-	strByteCount = _strlen(format);
 
-	/* print match */
-	printIfMatch(format, ap, strByteCount);
-	/* print new line */
+	while (*(format + idx) != '\0')
+	{
+		arrIdx = 0;
+		while (*(arr[arrIdx].fmt) != *(format + idx))
+			arrIdx++;
+		arr[arrIdx].f(ap);
+		idx++;
+		if (*(format + idx) != '\0')
+			printf(", ");
+	}
+
 	putchar('\n');
-
 }
+
+
