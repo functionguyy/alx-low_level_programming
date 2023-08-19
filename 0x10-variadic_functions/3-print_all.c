@@ -1,6 +1,7 @@
 #include "variadic_functions.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 /**
  * printMatch - functions print the variadic argument that matches the format
  * character
@@ -74,6 +75,19 @@ void printComma(int sig, char c)
 	}
 }
 /**
+ * ifNull- terminates the current running process if argument is NULL or an
+ * empty string
+ * @fmt: pointer to the argument string
+ */
+void ifNull(const char *fmt)
+{
+	if (fmt == NULL || *fmt == '\0')
+	{
+		putchar('\n');
+		exit(EXIT_SUCCESS);
+	}
+}
+/**
  * print_all - function that prints anything
  * @format: list of types of arguments passed to the function
  */
@@ -86,11 +100,7 @@ void print_all(const char * const format, ...)
 	foundMatch = 0;
 	va_start(ap, format);
 
-	if (format == NULL || *format == '\0')
-	{
-		putchar('\n');
-		return;
-	}
+	ifNull(format);
 
 	while (*(format + idx) != '\0')
 	{
