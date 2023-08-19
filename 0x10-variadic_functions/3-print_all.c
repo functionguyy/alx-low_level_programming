@@ -87,7 +87,10 @@ void print_all(const char * const format, ...)
 	va_start(ap, format);
 
 	if (format == NULL || *format == '\0')
+	{
 		putchar('\n');
+		return;
+	}
 
 	while (*(format + idx) != '\0')
 	{
