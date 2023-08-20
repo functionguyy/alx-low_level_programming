@@ -31,19 +31,20 @@ void print_number(int n)
 		{
 			c = 0;
 		}
+	}
 
-		/* count down */
-		while (num >= 0)
+	/* count down */
+	while (num >= 0)
+	{
+		if (m == 1)
 		{
-			if (m == 1)
-			{
-				_putchar(num % 10 + '0');
-				num = -1;
-			} else
-			{
-				_putchar((num / m % 10) + '0');
-				m /= 10;
-			}
+			_putchar(num % 10 + '0');
+			num = -1;
+		}
+		else
+		{
+			_putchar((num / m % 10) + '0');
+			m /= 10;
 		}
 	}
 }
