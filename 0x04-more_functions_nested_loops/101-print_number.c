@@ -9,7 +9,7 @@ unsigned int printMinus(int number)
 {
 	unsigned int num;
 
-	if (n < 0)
+	if (number < 0)
 	{
 		num = number * -1;
 		_putchar('-');
