@@ -9,6 +9,11 @@ void print_number(int n)
 {
 	unsigned int num, c, sig, m; /* convert int to long */
 
+	m = 1;
+	c = 1;
+	sig = 1;
+	num = 0;
+
 	/* negatives */
 	if (n < 0)
 	{
@@ -19,9 +24,6 @@ void print_number(int n)
 		num = n;
 
 	/* count up */
-	m = 1;
-	c = 1;
-	sig = 1
 	while (c)
 	{
 		if (num / (m * 10) > 0)
