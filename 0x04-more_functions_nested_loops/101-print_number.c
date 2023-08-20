@@ -1,4 +1,24 @@
 #include "main.h"
+/**
+ * printMinus - checks if number is negative and prints a negative sign
+ *@number: integer
+ *
+ * Return: a non-negative integer
+ */
+unsigned int printMinus(int number)
+{
+	unsigned int num;
+
+	if (n < 0)
+	{
+		num = number * -1;
+		_putchar('-');
+	}
+	else
+		num = number;
+
+	return (num);
+}
 
 /**
 * print_number - Function that prints an integer.
@@ -7,21 +27,15 @@
 */
 void print_number(int n)
 {
-	unsigned int num, c, sig, m; /* convert int to long */
+	unsigned int num, c, m;
+	int sig;
 
 	m = 1;
 	c = 1;
 	sig = 1;
-	num = 0;
 
 	/* negatives */
-	if (n < 0)
-	{
-		num = n * -1;
-		_putchar('-');
-	}
-	else
-		num = n;
+	num = printMinus(n);
 
 	/* count up */
 	while (c)
