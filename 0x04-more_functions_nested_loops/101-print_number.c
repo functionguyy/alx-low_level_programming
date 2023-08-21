@@ -1,25 +1,35 @@
 #include "main.h"
 /**
- * printMinus - checks if number is negative and prints a negative sign
- *@number: integer
+ * exponent - calculate the exponent of a base 10 number
+ * @digit: a positive base 10 number
  *
- * Return: a non-negative integer
+ * Return: returns the exponent of the number passed to it.
+ *
  */
-unsigned int printMinus(int number)
+unsigned int exponent(unsigned int digit)
 {
-	unsigned int num;
+	/* declare variables */
+	unsigned int exp, count;
 
-	if (number < 0)
+	count = 0;
+	exp = 1;
+
+	/* get the numbers of tens in the number */
+	while (digit > 0)
 	{
-		num = number * -1;
-		_putchar('-');
+		digit = digit / 10;
+		count++;
 	}
-	else
-		num = number;
 
-	return (num);
+	/* calculate its exponent */
+	while (count > 1)
+	{
+		exp = exp * 10;
+		count--;
+	}
+
+	return (exp);
 }
-
 /**
 * print_number - Function that prints an integer.
 * @n: int type number
@@ -27,40 +37,27 @@ unsigned int printMinus(int number)
 */
 void print_number(int n)
 {
-	unsigned int num, c, m;
-	int sig;
+	/* declare variables */
+	unsigned int num, exp, number;
 
-	m = 1;
-	c = 1;
-	sig = 1;
-
-	/* negatives */
-	num = printMinus(n);
-
-	/* count up */
-	while (c)
+	/* account for negative number */
+	if (n < 0)
 	{
-		if (num / (m * 10) > 0)
-		{
-			m *= 10;
-		} else
-		{
-			c = 0;
-		}
+		num = n * -1;
+		_putchar('-');
 	}
+	else
+		num = n;
 
-	/* count down */
-	while (sig > 0)
+	/* calculate the exponent */
+	exp = exponent(num);
+
+	/* print an integer */
+	while (exp > 0)
 	{
-		if (m == 1)
-		{
-			_putchar(num % 10 + '0');
-			sig = -1;
-		}
-		else
-		{
-			_putchar((num / m % 10) + '0');
-			m /= 10;
-		}
+		number = num / exp;
+		_putchar(number + '0');
+		num = num - (number * exp);
+		exp /= 10;
 	}
 }
