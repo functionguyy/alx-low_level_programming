@@ -8,7 +8,7 @@
 size_t print_list(const list_t *h)
 {
 	/* declare variables */
-	size_t n;
+	unsigned int n;
 
 
 	/* initialize variables */
