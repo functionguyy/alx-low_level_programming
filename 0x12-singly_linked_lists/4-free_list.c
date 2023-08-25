@@ -22,7 +22,7 @@ void free_list(list_t *head)
 			currentNode = head;
 			head = head->next;
 			free(currentNode->str);
-			free(current)
+			free(current);
 		}
 		free(head->str);
 		free(head);
