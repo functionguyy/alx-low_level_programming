@@ -9,16 +9,12 @@
 size_t print_list(const list_t *h)
 {
 	/* declare variables */
-	size_t idx;
+	unsigned int n;
 
 
 	/* initialize variables */
-	idx = 0;
+	n = 0;
 
-
-	/* confirm list */
-	if (h == NULL || h->next == NULL)
-		return (idx);
 
 	/* print elements of the linked list */
 	while (h != NULL)
@@ -26,15 +22,15 @@ size_t print_list(const list_t *h)
 		if (h->str == NULL)
 		{
 			printf("[%d] (nil)\n", 0);
-			idx++;
+			n++;
 			h = h->next;
 			continue;
 		}
 
 		printf("[%d] %s\n", h->len, h->str);
-		idx++;
+		n++;
 		h = h->next;
 	}
 
-	return (idx);
+	return (n);
 }
