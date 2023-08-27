@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		printf("lol\n");
+		printf("Error\n");
 		exit(1);
 	}
 
@@ -38,8 +38,10 @@ int main(int argc, char *argv[])
 
 	while (i < num_of_bytes)
 	{
-		printf("%02x ", p[i]);
+		printf("%02x", p[i]);
 		i++;
+		if (i != num_of_bytes)
+			printf(" ");
 	}
 
 	putchar('\n');
