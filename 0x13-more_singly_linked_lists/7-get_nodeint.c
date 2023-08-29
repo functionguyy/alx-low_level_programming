@@ -26,7 +26,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 	ncount = listint_len(head);
 
 	/* seek the nth node */
-	while (count < ncount)
+	while (count <= ncount)
 	{
 		nthNode = head;
 		head = head->next;
