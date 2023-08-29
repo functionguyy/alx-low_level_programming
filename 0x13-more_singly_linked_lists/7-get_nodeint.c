@@ -26,7 +26,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 		nthNode = head;
 		head = nthNode->next;
 		if (count == index)
-			return(nthNode);
+			return (nthNode);
 		count++;
 	}
 
