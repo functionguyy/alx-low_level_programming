@@ -17,7 +17,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	nodeBeforeTarget = NULL;
 	target = NULL;
 
-	if (head == NULL)
+	if (head == NULL || *head == NULL)
 		return (-1);
 
 	if (index == 0)
@@ -26,10 +26,6 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		pop_listint(head);
 		return (1);
 	}
-
-	/* check if list is empty */
-	if (*head == NULL)
-		return (-1);
 
 	/* count how many nodes are in the list */
 	ncount = listint_len(*head) - 1;
