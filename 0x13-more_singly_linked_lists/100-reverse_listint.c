@@ -8,7 +8,7 @@
 listint_t *reverse_listint(listint_t **head)
 {
 	/* declare variables */
-	listint_t *beforeNode, *afterNode;
+	listint_t *prevNode, *nxtNode;
 
 	/* initialize variables */
 	prevNode = NULL;
@@ -25,7 +25,7 @@ listint_t *reverse_listint(listint_t **head)
 		prevNode = *head;
 		*head = nxtNode;
 	}
-	head = prevNode;
+	*head = prevNode;
 
 	return (*head);
 }
