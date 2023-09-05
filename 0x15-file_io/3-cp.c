@@ -71,7 +71,7 @@ int open_from_file(char *filename)
 
 	if (fd == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: can't read from file %s\n", filename);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
 		exit(98);
 	}
 
