@@ -20,9 +20,8 @@ int check_file_exist(int fd);
 int create_file(const char *filename, char *text_content)
 {
 	/* declare variables */
-	int fdi, sig;
-	ssize_t charWriteCounti;
-	size_t strCount;
+	int fd, sig;
+	ssize_t charWriteCount, strCount;
 
 
 	/* initialize the variables */
@@ -37,7 +36,7 @@ int create_file(const char *filename, char *text_content)
 
 	fd = open(filename, O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR);
 
-	sig = check_file_exit(fd);
+	sig = check_file_exist(fd);
 
 	if (sig == 1)
 		fd = open(filename, O_RDWR | O_TRUNC);
