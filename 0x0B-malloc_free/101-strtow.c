@@ -184,7 +184,7 @@ char **strtow(char *str)
 	token = strTokenizer(fullStr, " ");
 
 	/* check that string contains atleast one non-delimiter character */
-	if (strTokenizer == NULL)
+	if (token == NULL)
 		return (NULL);
 
 	while (token != NULL)
