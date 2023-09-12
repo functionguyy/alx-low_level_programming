@@ -167,13 +167,13 @@ char **strtow(char *str)
 	arrIdx = 0;
 
 	/* confirm argument passed is not empty */
-	if (str == NULL || *str == '\0')
+	if (str == NULL || *str == '\0' || *str == '\040')
 		return (NULL);
 
 	/* count the numbers of words in the string */
 	numberOfWords = wordCount(str, " ");
 
-	ptrArr = malloc(sizeof(char *) * numberOfWords + 1);
+	ptrArr = malloc(sizeof(char *) * (numberOfWords + 1));
 	if (ptrArr == NULL)
 		return (NULL);
 
