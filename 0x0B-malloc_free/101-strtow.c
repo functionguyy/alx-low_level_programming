@@ -167,7 +167,7 @@ char **strtow(char *str)
 	arrIdx = 0;
 
 	/* confirm argument passed is not empty */
-	if (str == NULL || *str == '\0' || *str == '\040')
+	if (str == NULL || *str == '\0')
 		return (NULL);
 
 	/* count the numbers of words in the string */
@@ -182,6 +182,11 @@ char **strtow(char *str)
 	fullStr = strdup(str);
 
 	token = strTokenizer(fullStr, " ");
+
+	/* check that string contains atleast one non-delimiter character */
+	if (strTokenizer == NULL)
+		return (NULL);
+
 	while (token != NULL)
 	{
 		ptrArr[arrIdx] = token;
