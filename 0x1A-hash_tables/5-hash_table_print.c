@@ -9,18 +9,17 @@
 void hash_table_print(const hash_table_t *ht)
 {
 	/* declare variables */
-	unsigned long int size, idx;
-	hash_node_t *head, *cur_node;
+	unsigned long int idx;
+	hash_node_t *head;
 	int start;
 
 	idx = 0;
 	start = 1;
-	putchar('{');
+
 	if (ht)
 	{
-		size = ht->size;
-
-		for (idx = 0; idx < size; idx++)
+		putchar('{');
+		for (idx = 0; idx < ht->size; idx++)
 		{
 			/* get the element at current idx */
 			head = ht->array[idx];
@@ -34,13 +33,11 @@ void hash_table_print(const hash_table_t *ht)
 					else
 						printf(", ");
 
-					cur_node = head;
-					printf("'%s': '%s'", cur_node->key, cur_node->value);
+					printf("'%s': '%s'", head->key, head->value);
 					head = head->next;
 				}
 			}
 		}
-
+		puts("}");
 	}
-	puts("}");
 }
