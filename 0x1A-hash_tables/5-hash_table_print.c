@@ -27,15 +27,17 @@ void hash_table_print(const hash_table_t *ht)
 
 			if (head)
 			{
-				if (start)
-					start = 0;
-				else
-					putchar(',');
+				while (head != NULL)
+				{
+					if (start)
+						start = 0;
+					else
+						printf(", ");
 
-				cur_node = head;
-				printf("'%s': '%s'", cur_node->key, cur_node->value);
-
-
+					cur_node = head;
+					printf("'%s': '%s'", cur_node->key, cur_node->value);
+					head = head->next;
+				}
 			}
 		}
 
