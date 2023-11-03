@@ -32,13 +32,9 @@ void hash_table_print(const hash_table_t *ht)
 				else
 					putchar(',');
 
-				while (head != NULL)
-				{
-					cur_node = head;
-					head = cur_node->next;
-					printf("'%s': '%s'", cur_node->key, cur_node->value);
+				cur_node = head;
+				printf("'%s': '%s'", cur_node->key, cur_node->value);
 
-				}
 
 			}
 		}
