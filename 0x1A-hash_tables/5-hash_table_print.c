@@ -24,18 +24,15 @@ void hash_table_print(const hash_table_t *ht)
 			/* get the element at current idx */
 			head = ht->array[idx];
 
-			if (head)
+			while (head != NULL)
 			{
-				while (head != NULL)
-				{
-					if (start)
-						start = 0;
-					else
-						printf(", ");
+				if (start)
+					start = 0;
+				else
+					printf(", ");
 
-					printf("'%s': '%s'", head->key, head->value);
-					head = head->next;
-				}
+				printf("'%s': '%s'", head->key, head->value);
+				head = head->next;
 			}
 		}
 		puts("}");
