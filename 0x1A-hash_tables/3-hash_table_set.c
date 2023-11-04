@@ -15,19 +15,32 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *head, *new_node;
+	hash_node_t *head, *new_node, *tmp;
 	unsigned long int ht_array_idx;
 
 
-	if (ht == NULL || key == NULL)
-		return (0);
-
-	new_node = create_node(key, value);
-	if (new_node == NULL)
+	if (ht == NULL || key == NULL || strlen(key) == 0)
 		return (0);
 
 	ht_array_idx = key_index((const unsigned char *)key, ht->size);
 	head = ht->array[ht_array_idx];
+	tmp = head;
+
+	/* update value of existing key */
+	while (tmp)
+	{
+		if (strcmp(tmp->key, key) == 0)
+		{
+			free(tmp->value);
+			tmp->value = strdup(value);
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+
+	new_node = create_node(key, value);
+	if (new_node == NULL)
+		return (0);
 
 	/* check if the array cell is empty */
 	if (head == NULL)
@@ -36,18 +49,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	else
 	{
-		/* check if the key already exit */
-		if (strcmp(head->key, key) == 0)
-		{
-			strcpy(ht->array[ht_array_idx]->value, new_node->value);
-		}
-		else
-		{
-			/* if collision occurs add new node to linked list */
-			new_node->next = ht->array[ht_array_idx];
-			ht->array[ht_array_idx] = new_node;
-		}
-
+		/* if collision occurs add new node to linked list */
+		new_node->next = ht->array[ht_array_idx];
+		ht->array[ht_array_idx] = new_node;
 	}
 
 	return (1);
@@ -63,24 +67,14 @@ hash_node_t *create_node(const char *key, const char *value)
 {
 	/* declare variables */
 	hash_node_t *new_node = NULL;
-	char *new_key, *new_value;
 
 	new_node = malloc(sizeof(hash_node_t));
 	if (new_node == NULL)
 		return (NULL);
 
-	if (key)
-	{
-		new_key = strdup(key);
-		if (new_key == NULL)
-			return (NULL);
-		new_value = strdup(value);
-		if (new_value == NULL)
-			return (NULL);
-		new_node->key = new_key;
-		new_node->value = new_value;
-		new_node->next = NULL;
-	}
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+	new_node->next = NULL;
 
 	return (new_node);
 }
