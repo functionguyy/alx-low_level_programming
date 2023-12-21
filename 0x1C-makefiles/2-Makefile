@@ -10,10 +10,4 @@ all : $(NAME)
 .PHONY : all
 
 $(NAME) : $(OBJ)
-	$(CC) -o $@ $(OBJ)
-
-main.o : main.c m.h
-	$(CC) -c -o $@ $<
-
-school.o : school.c m.h
-	$(CC) -c -o $@ $<
+	$(CC) -o $@ $^
