@@ -12,7 +12,7 @@ all : $(NAME)
 .PHONY : all
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $?
+	$(CC) $(CFLAGS) -o $@ $^
 
 clean : 
 	$(RM) $(NAME) *~ \#*\#
