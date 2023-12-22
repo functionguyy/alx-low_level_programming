@@ -12,6 +12,7 @@ def count_water_edges(x, y, matrix):
     One cell is a square with side lenght 1
     """
 
+    grid = matrix
     grid_height = len(matrix)
     grid_width = len(matrix[x])
     count = 0
@@ -23,7 +24,7 @@ def count_water_edges(x, y, matrix):
         count += 1
     if y + 1 == grid_height or grid[y + 1][x] == 0:
         count += 1
-    if x - 1 = 0 or grid[y][x - 1] == 0:
+    if x - 1 == 0 or grid[y][x - 1] == 0:
         count += 1
 
     return count
