@@ -18,7 +18,7 @@ def count_water_edges(x, y, matrix):
     count = 0
 
     # count water edges
-    if y - 1 <  0 or grid[y - 1][x] == 0:
+    if y - 1 < 0 or grid[y - 1][x] == 0:
         count += 1
     if x + 1 == grid_width or grid[y][x + 1] == 0:
         count += 1
@@ -51,7 +51,6 @@ def island_perimeter(grid):
                     return 0
     else:
         return 0
-
 
     perimeter = 0
     for row_num in range(len(grid)):
