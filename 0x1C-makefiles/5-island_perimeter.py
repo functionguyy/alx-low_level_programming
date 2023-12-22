@@ -14,7 +14,7 @@ def count_water_edges(x, y, matrix):
 
     grid = matrix
     grid_height = len(matrix)
-    grid_width = len(matrix[x])
+    grid_width = len(matrix[y])
     count = 0
 
     # count water edges
