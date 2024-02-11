@@ -11,7 +11,7 @@
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *head, *express;
-	int key
+	int key;
 
 	if (!list)
 		return (NULL);
@@ -25,14 +25,18 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		if (key == head->n)
 			return (head);
 
-		if (key > head->n && k >= express->n)
+		if (key > head->n && express)
 		{
-			head = express;
-			express = head->express;
-			continue;
-		}
 
+			if (key >= express->n)
+			{
+				head = express;
+				express = head->express;
+				continue;
+			}
+		}
 		head = head->next;
+
 	}
 
 	return (NULL);
