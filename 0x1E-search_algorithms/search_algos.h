@@ -4,9 +4,4 @@
 int linear_search(int *array, size_t size, int value);
 int binary_search(int *array, size_t size, int value);
 
-skiplist_t *linear_skip(skiplist_t *list, int value);
-skiplist_t *create_skiplist(int *array, size_t size);
-void print_skiplist(const skiplist_t *list);
-void free_skiplist(skiplist_t *list);
-
 #endif /* SEARCH_ALGOS_H */
